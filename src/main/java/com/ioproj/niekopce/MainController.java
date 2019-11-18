@@ -8,12 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/main")
 public class MainController {
 
-    boolean isGituwa = false;
-
     @GetMapping("/mainPage")
-    public String getMainPageAndGituwa(){
-
+    public String getMainPage(){
         return "main/mainPage";
     }
-
 }
