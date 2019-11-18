@@ -1,6 +1,5 @@
 package com.ioproj.niekopce;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,8 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/main")
 public class MainController {
 
+    boolean isGituwa = false;
+
     @GetMapping("/mainPage")
-    public String getMainPage(){
+    public String getMainPageAndGituwa(){
+
         return "main/mainPage";
     }
 
