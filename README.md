@@ -1,2 +1,2 @@
 # nieKopce
-# nieKopce
+# Tu trzeba będzie dorobić ładne README
