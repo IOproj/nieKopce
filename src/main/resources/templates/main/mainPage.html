@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>NieKopce</title>
+    <title>Niekopce </title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/custom.js"></script>        <!-- takie coś trzeba dodać dla każdego nowego pliku js. TODO: wporowadzić bardziej flexible rozwiązanie -->
+    <link rel="stylesheet" type="text/css" href="/css/custom.css"/>        <!-- TODO: Analogicznie -->
+
 </head>
 <body>
-<div>
-    <p></p>
-    <p>Witaj na stronie głównej Niekopce
-    </p>
+<h1 class="h1">Witaj na stronie głównej Niekopce</h1>
+<div class="parent">
+    <input type="button" id="loginButton" class="button" onclick="loginBtnFunction()" value="Zaloguj się"/> <!-- TODO: 1.ZAPYTANIE AJAXOWE PRZERZUCAJĄCE DO LOGOWANIA -->
+    <input type="button" id="registerButton"   class="button" onclick="registerBtnFunction()" value="Zarejestruj się"/>
+    <input type="button" id="gituwaButton"   class="button" onclick="gituwaBtnFunction()" value="Gituwa button"/>
 </div>
-
 
 </body>
 </html>
