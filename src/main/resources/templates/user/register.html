@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css"/>
+
+    <style type="text/css">
+        span.error{
+            color: red;
+            margin-left: 5px;
+        }
+    </style>
+
+</head>
+<body>
+<div>
+    <form action="#" th:action="@{/user/addUser}" th:object="${addUserDTO}"method="post" class="datareciever">      <!-- Dobrze było by to przerobić na AJAX ale coś mi z nim nie działa -->
+      <div class="form-group">
+          <label th:for="username">Username</label>
+          <input class="form-control" th:field="${addUserDTO.username}">
+          <span th:errors="${addUserDTO.username}" class="error"></span>
+      </div>
+        <div class="form-group">
+            <label th:for="password">Password</label>
+            <input class="form-control" th:field="${addUserDTO.password}">
+            <span th:errors="${addUserDTO.password}" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label th:for="email">Email</label>
+            <input class="form-control" th:field="${addUserDTO.email}">
+            <span th:errors="${addUserDTO.email}" class="error"></span>
+        </div>
+        <p><input type="submit" value="Zatwierdź" class="button"></p>
+    </form>
+
+</div>
+</body>
+</html>

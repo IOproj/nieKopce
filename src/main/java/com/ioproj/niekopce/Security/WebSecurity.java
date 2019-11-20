@@ -23,10 +23,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
             "/css/**",
             "/images/**",
             "/webjars/**",
-            "/main/*"
+            "/main/*",
+            "/user/**",
+            "/favicon"
     };
 
-    private static final String MAINPAGE="/main/mainPage";
+    private static final String MAINPAGE = "/main/mainPage";
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsService userDetailsService;
 

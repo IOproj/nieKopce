@@ -23,3 +23,9 @@
     justify-content: center;
     align-items: center;
 }
+
+.datareciever{
+    position: absolute;
+    left: 37%;
+    margin-top: 50px;
+}
