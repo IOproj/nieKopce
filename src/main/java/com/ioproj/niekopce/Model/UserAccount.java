@@ -3,6 +3,7 @@ package com.ioproj.niekopce.Model;
 import com.ioproj.niekopce.Model.DTO.AddUserDTO;
 import lombok.*;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -10,7 +11,9 @@ import java.util.UUID;
 
 @Setter
 @Getter
+@Entity
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserAccount {
 
     @Id
@@ -23,8 +26,7 @@ public class UserAccount {
 
     @Override
     public int hashCode() {
-        //TODO: Implementation
-        return super.hashCode();
+        return  7*13*dbId.hashCode();
     }
 
     @Override
@@ -40,7 +42,15 @@ public class UserAccount {
     }
 
     public AddUserDTO dto(){
-        //TODO Implementation;
-        return null;
+        AddUserDTO addUserDTO = new AddUserDTO();
+        addUserDTO.setUsername(this.username);
+        addUserDTO.setPassword(this.password);
+        addUserDTO.setEmail(this.email);
+        return addUserDTO;
+    }
+
+    public UserAccount(AddUserDTO dto){
+        this.username=dto.getUsername();
+        this.email=dto.getEmail();
     }
 }

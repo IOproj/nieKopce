@@ -3,6 +3,8 @@ package com.ioproj.niekopce.Controllers;
 
 import com.ioproj.niekopce.Model.DTO.AddUserDTO;
 import com.ioproj.niekopce.Model.UserAccount;
+import com.ioproj.niekopce.Services.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +19,10 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
+@AllArgsConstructor
 public class UserController {
+
+    private UserService userService;
 
 
     @GetMapping("/addUser")
@@ -33,7 +38,7 @@ public class UserController {
             return "user/register";
         }
         System.out.println(addUserDTO.getEmail());
-        //TODO: Logika dodawania do repozytorium
+        userService.addUser(addUserDTO);
         //TODO: Zmienić tego returna by nie rzucał na whitepage
         return "redirect:";
     }

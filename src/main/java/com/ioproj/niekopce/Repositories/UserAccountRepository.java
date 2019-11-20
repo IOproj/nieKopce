@@ -10,8 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserAccountRepository  extends JpaRepository<UserAccount, Long> {
-
+public interface UserAccountRepository extends JpaRepository<UserAccount,Long> {
 
     @Query("SELECT ua FROM UserAccount ua WHERE ua.username = :username")
     Optional<UserAccount> findByUsername(@Param("username") String username);
