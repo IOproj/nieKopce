@@ -37,9 +37,7 @@ public class UserController {
             model.addAttribute("title", "Add User");
             return "user/register";
         }
-        System.out.println(addUserDTO.getEmail());
         userService.addUser(addUserDTO);
-        //TODO: Zmienić tego returna by nie rzucał na whitepage
-        return "redirect:";
+        return "redirect:/main/mainPage";
     }
 }

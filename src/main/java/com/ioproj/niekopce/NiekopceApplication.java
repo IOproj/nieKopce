@@ -2,12 +2,13 @@ package com.ioproj.niekopce;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.PropertySource;
 
 @PropertySource("classpath:config.properties")
-@SpringBootApplication
+@SpringBootApplication()
 public class NiekopceApplication {
 
     public static void main(String[] args) {
