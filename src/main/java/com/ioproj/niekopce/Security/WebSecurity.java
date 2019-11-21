@@ -46,6 +46,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().defaultSuccessUrl(MAINPAGE, true)
+                .and()
+                .logout()
+                .logoutSuccessUrl(MAINPAGE)
                 .permitAll();
     }
 }

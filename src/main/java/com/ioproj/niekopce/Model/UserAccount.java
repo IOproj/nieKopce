@@ -35,12 +35,6 @@ public class UserAccount {
         return super.equals(obj);
     }
 
-    @Override
-    public String toString() {
-        //TODO: Implementation
-        return super.toString();
-    }
-
     public AddUserDTO dto(){
         AddUserDTO addUserDTO = new AddUserDTO();
         addUserDTO.setUsername(this.username);
