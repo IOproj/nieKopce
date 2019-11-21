@@ -13,17 +13,18 @@
 <script th:src="@{/js/jquery-1.6.2.js}" type="text/javascript"></script>
 
     <script type="text/javascript">
-$(document).ready(function () {                                             // TEN AJAX DZIAŁA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    $('#gituwaButton').click(function () {
-        alert("Helo");
-        $.ajax({
-            url:'/main/test',
-            type:'GET'
+
+        $(document).ready(function () {                                             // TEN AJAX DZIAŁA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                alert("Helo");
+                $.ajax({
+                    url:'/main/mainPage',
+                    cache: false,
+                    type:'GET'
+                })
         })
-    })
-})
+
     </script>
-   <!-- <script>
+    <script>
         $(function () {
             function timechecker() {
                 setInterval(function () {
@@ -41,7 +42,13 @@ $(document).ready(function () {                                             // T
                 var timePast=Math.floor((timeDiff/60000));
                console.log(timePast);
                 if(timePast>=1){
+                    timePast=1;
                     console.log("Minęła minuta");
+                    alert("Helo");
+                    $.ajax({
+                        url:'/main/logout',
+                        type:'POST'
+                    })
 
                 }
             }
@@ -53,11 +60,15 @@ $(document).ready(function () {                                             // T
             })  ;
             timechecker();
         })
-    </script-->
+    </script>
 
 </head>
 <body>
+Zalogowany jako <tr th:text="${username}"/>
 <h1 class="h1">Witaj na stronie głównej Niekopce</h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out" />
+</form>
 <div class="parent">
     <input type="button" id="gituwaButton"   class="button" onclick="gituwaBtnFunction()" value="Gituwa button"/>
     <a href="/user/addUser" class="button">Zarejestruj się</a>

@@ -2,6 +2,7 @@ package com.ioproj.niekopce.Security;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -31,6 +32,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     private static final String MAINPAGE = "/main/mainPage";
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsService userDetailsService;
+    CustomizeLogoutSuccessHandler customizeLogoutSuccessHandler;
+
 
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -46,9 +49,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().defaultSuccessUrl(MAINPAGE, true)
-                .and()
-                .logout()
-                .logoutSuccessUrl(MAINPAGE)
+                .permitAll()
+              //  .and()
+              //  .logout().logoutSuccessHandler(customizeLogoutSuccessHandler)
                 .permitAll();
+
     }
 }
