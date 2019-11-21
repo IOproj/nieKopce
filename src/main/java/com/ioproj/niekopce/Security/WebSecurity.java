@@ -50,8 +50,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().defaultSuccessUrl(MAINPAGE, true)
                 .permitAll()
-              //  .and()
-              //  .logout().logoutSuccessHandler(customizeLogoutSuccessHandler)
+                .and()
+                .logout().logoutSuccessHandler(customizeLogoutSuccessHandler)
                 .permitAll();
 
     }

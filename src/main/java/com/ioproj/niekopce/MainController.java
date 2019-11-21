@@ -31,7 +31,7 @@ public class MainController {
     public String getMainPage(Model model, Principal principal) {
         String name;
         try {
-            name = principal.getName();
+                name = principal.getName();
         } catch (NullPointerException e) {
             name = "niezalogowany";
         }
@@ -40,7 +40,7 @@ public class MainController {
     }
 
     @GetMapping("/logout")
-    public String logoutDo(HttpServletRequest request,HttpServletResponse response,Model model, Principal principal){
+    public String logoutDo(HttpServletRequest request,HttpServletResponse response, Principal principal){
         HttpSession session= request.getSession(false);
         SecurityContextHolder.clearContext();
         session= request.getSession(false);
@@ -56,8 +56,7 @@ public class MainController {
         } catch (NullPointerException e) {
             name = "niezalogowany";
         }
-        model.addAttribute("username", name);
         // TODO tu wywołąć metodę JS która pobierze stronę na nowo
-        return "main/mainPage";
+        return "redirect:/main/mainPage";
     }
 }
