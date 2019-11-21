@@ -7,5 +7,12 @@ function registerBtnFunction(){
 }
 
 function gituwaBtnFunction(){
-    alert("Piątek piąteczek piątunio");
+
+    $.ajax({
+        url: 'main/test',
+        type:'GET',
+        error: function () {
+            console.log("ZLE")
+        }
+    })
 }

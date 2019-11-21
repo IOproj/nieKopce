@@ -10,6 +10,50 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/custom.js"></script>        <!-- takie coś trzeba dodać dla każdego nowego pliku js. TODO: wporowadzić bardziej flexible rozwiązanie -->
     <link rel="stylesheet" type="text/css" href="/css/custom.css"/>        <!-- TODO: Analogicznie -->
+<script th:src="@{/js/jquery-1.6.2.js}" type="text/javascript"></script>
+
+    <script type="text/javascript">
+$(document).ready(function () {                                             // TEN AJAX DZIAŁA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    $('#gituwaButton').click(function () {
+        alert("Helo");
+        $.ajax({
+            url:'/main/test',
+            type:'GET'
+        })
+    })
+})
+    </script>
+   <!-- <script>
+        $(function () {
+            function timechecker() {
+                setInterval(function () {
+                    var  stored= sessionStorage.getItem("lastTimeStamp");
+                    console.log(stored);
+                    timeCompare(stored)
+                },3000)
+
+            }
+
+            function timeCompare(timeStirng){
+                var currentTime= new Date();
+                var pastTime= new Date(timeStirng);
+                var timeDiff = currentTime - pastTime;
+                var timePast=Math.floor((timeDiff/60000));
+               console.log(timePast);
+                if(timePast>=1){
+                    console.log("Minęła minuta");
+
+                }
+            }
+            $(document).mousedown(function () {
+
+
+                var timeStamp = new Date();
+                sessionStorage.setItem("lastTimeStamp",timeStamp);
+            })  ;
+            timechecker();
+        })
+    </script-->
 
 </head>
 <body>
@@ -19,6 +63,6 @@
     <a href="/user/addUser" class="button">Zarejestruj się</a>
     <a href="/login" class="button">Zaloguj się</a>  <!-- TODO: 1.ZAPYTANIE AJAXOWE PRZERZUCAJĄCE DO LOGOWANIA -->
 </div>
-
+<img src="/image.jpg" alt="">
 </body>
 </html>

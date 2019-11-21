@@ -12,4 +12,10 @@ public class MainController {
     public String getMainPage(){
         return "main/mainPage";
     }
+
+    @GetMapping("/test")
+    public String getTestLog(){
+        System.out.println("AAAAAAAAAAAAAAAAAA");
+        return "main/mainPage";
+    }
 }
