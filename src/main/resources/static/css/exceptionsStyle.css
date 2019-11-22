@@ -1,0 +1,27 @@
+/* Inport fonts here*/
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+.row{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+.error-header{
+    height: 30vh;
+    min-width: 50vw;
+    line-height: 30vh;
+    text-align: center;
+    font-size: 192px;
+}
+
+.description{
+    font-size: 24px;
+    text-align: center;
+    height: 68px;
+}
+
+.description p{
+    font-size: 14px;
+}
