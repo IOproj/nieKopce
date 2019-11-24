@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Controller;
 
 @Configuration
@@ -32,7 +33,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     private static final String MAINPAGE = "/main/mainPage";
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsService userDetailsService;
-    CustomizeLogoutSuccessHandler customizeLogoutSuccessHandler;
+    private final CustomizeLogoutSuccessHandler customizeLogoutSuccessHandler;
 
 
 
@@ -48,7 +49,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(WHITELIST).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().defaultSuccessUrl(MAINPAGE, true)
+                .formLogin()
+                .defaultSuccessUrl(MAINPAGE, true)
                 .permitAll()
                 .and()
                 .logout().logoutSuccessHandler(customizeLogoutSuccessHandler)
