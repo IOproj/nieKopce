@@ -28,4 +28,10 @@ public class UserService {
         return userAccountRepository.findByUsername(username).orElseThrow(() ->
                 new RuntimeException("No user found"));
     }
+
+    public boolean isAdmin(String name) {
+        UserAccount userAccount = userAccountRepository.findByUsername(name).orElseThrow(()->
+                new RuntimeException("No user found"));
+        return userAccount.getIsServiceman();
+    }
 }

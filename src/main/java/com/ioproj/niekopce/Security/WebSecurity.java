@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Controller;
 
 @Configuration
@@ -25,14 +26,14 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
             "/images/**",
             "/webjars/**",
             "/main/*",
-            "/user/**",
+            "/user/register",
             "/favicon"
     };
 
     private static final String MAINPAGE = "/main/mainPage";
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsService userDetailsService;
-    CustomizeLogoutSuccessHandler customizeLogoutSuccessHandler;
+    private final CustomizeLogoutSuccessHandler customizeLogoutSuccessHandler;
 
 
 
@@ -46,10 +47,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(WHITELIST).permitAll()
+                .antMatchers("/user").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().defaultSuccessUrl(MAINPAGE, true)
-                .permitAll()
+                .formLogin()
+                .defaultSuccessUrl(MAINPAGE, true)
+              //  .permitAll()
                 .and()
                 .logout().logoutSuccessHandler(customizeLogoutSuccessHandler)
                 .permitAll();

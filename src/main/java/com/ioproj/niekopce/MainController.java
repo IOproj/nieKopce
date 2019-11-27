@@ -1,6 +1,8 @@
 package com.ioproj.niekopce;
 
+import com.ioproj.niekopce.Model.UserAccount;
 import com.ioproj.niekopce.Security.CustomizeLogoutSuccessHandler;
+import com.ioproj.niekopce.Services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.security.core.Authentication;
@@ -25,19 +27,38 @@ import java.security.Principal;
 @RequestMapping("/main")
 @AllArgsConstructor
 public class MainController {
+
     CustomizeLogoutSuccessHandler customizeLogoutSuccessHandler;
+    private  UserService userService;
+    private  JSCaller jsCaller;
 
     @GetMapping("/mainPage")
     public String getMainPage(Model model, Principal principal) {
         String name;
         try {
                 name = principal.getName();
+        //    jsCaller.activateJS();
         } catch (NullPointerException e) {
             name = "niezalogowany";
         }
         model.addAttribute("username", name);
         return "main/mainPage";
     }
+
+    @GetMapping("/returnMain")
+    public String returnToMainPage(Model model, Principal principal) {
+        String name;
+        try {
+            name = principal.getName();
+        } catch (NullPointerException e) {
+            name = "niezalogowany";
+        }
+        model.addAttribute("username", name);
+        return "main/mainPage";
+    }
+
+
+
 
     @GetMapping("/logout")
     public String logoutDo(HttpServletRequest request,HttpServletResponse response, Principal principal){
