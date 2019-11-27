@@ -17,6 +17,8 @@
 
     <properties>
         <java.version>1.8</java.version>
+
+        <pg-embedded.version>0.7.1</pg-embedded.version>
     </properties>
 
     <dependencies>
@@ -48,6 +50,14 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.opentable.components</groupId>
+            <artifactId>otj-pg-embedded</artifactId>
+            <version>${pg-embedded.version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- JDBC Driver -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -75,6 +85,7 @@
             <version>1.1.2</version>
             <scope>runtime</scope>
         </dependency>
+
 
         <dependency>
             <groupId>com.google.guava</groupId>
