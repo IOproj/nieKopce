@@ -23,66 +23,20 @@
 
     <!-- Customs css style sheets -->
     <link rel="stylesheet" type="text/css" href="/css/custom.css" /> <!-- TODO: Analogicznie -->
+    <script type="text/javascript" src="/js/userPageScripts.js"></script>
 
 <script th:src="@{/js/jquery-1.6.2.js}" type="text/javascript"></script>
 
 
     <script>
         var now=new Date();
-        // Set the date we're counting down to
         var countDownDate = new Date();
         countDownDate.setMinutes(countDownDate.getMinutes()+5);
-        // Update the count down every 1 second
-        function calculateActivity() {
-
-
-           f = setInterval(function () {
-
-                var mints = countDownDate.getMinutes();
-                var secds = countDownDate.getSeconds();
-                // Get today's date and time
-                now = new Date();
-                var nowTime = now.getTime();
-                // Find the distance between now and the count down date
-                var distance = countDownDate - nowTime;
-
-                // Time calculations for days, hours, minutes and seconds
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                // Output the result in an element with id="demo"
-                document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-                    + minutes + "m " + seconds + "s ";
-
-                // If the count down is over, write some text
-                if (distance < 0) {
-                    clearInterval(f);
-                    $("#logoutPopUp").dialog({
-                        title: "AAAAAAA",
-                        width: 645,
-                        height: 300,
-                        modal: true,
-                    });
-                    $('#kekke').click(function () {
-                        $(this).dialog('close');
-                    })
-                    document.getElementById("demo").innerHTML = "EXPIRED";
-                }
-            }, 1000);
-
-        }
-
-        $(document).mousedown(function () {
-            now = new Date();
-            countDownDate = new Date();
-            countDownDate.setSeconds(now.getSeconds()+10);
-        })  ;
+        reactOnMouseClick();
     </script>
 </head>
 
-<body onload="calculateActivity()">     <!-- TODO: Dorobić oncloe -->
+<body onload="calculaateActivity()">    <!-- TODO: Dorobić oncloe -->
 
 <p id="demo"></p>
 
