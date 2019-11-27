@@ -42,12 +42,16 @@
 
 
 <h1>Default customer page</h1>
-<a href="/main/returnMain" class="button">Powrót na stronę główną</a>
+<div class="parent">
+    <input type="button" id="applicationButton" class="button" value="Zamów wizytę" onclick="applicationButtonFunction()">
+    <a href="/main/returnMain" class="button">Powrót na stronę główną</a>
+</div>
+
 
 <div id="logoutPopUp" style="display: none">
     Zostałeś wylogowany ze względu na brak aktywności
     <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out" id="kekke" />
+        <input type="submit" value="Sign Out" id="SignOutSubmit"/>
     </form>
 </div>
 </body>

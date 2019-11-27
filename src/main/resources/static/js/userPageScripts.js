@@ -21,7 +21,7 @@ function calculaateActivity() {
                 height: 300,
                 modal: true,
             });
-            $('#kekke').click(function () {
+            $('#SignOutSubmit').click(function () {
                 $(this).dialog('close');
             })
             document.getElementById("demo").innerHTML = "EXPIRED";
@@ -37,4 +37,9 @@ function reactOnMouseClick() {
         countDownDate.setSeconds(now.getSeconds()+10);
         console.log(countDownDate.getMinutes())
     })  ;
+}
+
+
+function applicationButtonFunction(){
+
 }

@@ -17,15 +17,16 @@ public class Certification {
 
     @Id
     @GeneratedValue
-    private Long certificationDbID;
+    private Long id;
     private String nextVisitDate;
     private Boolean isFinished;
-    @OneToMany      //TODO: Przerobić na lepsze powiązanie
+    @OneToMany(mappedBy = "certification",   //  'mappedBy = "certification"' oznacza,że 'private Certification certification' w
+            cascade = CascadeType.ALL, // klasie Visit odpowiada za relację (zawiera klucz obcy do query by znaleźć wszystkie wizyty dla danej certyfikacji
+            orphanRemoval = true)
     private List<Visit> visits;
 
 
-
-    public void addVisitReview(Visit visit){
+    public void addVisitReview(Visit visit) {
         visits.add(visit);
         visit.setCertification(this);
     }
