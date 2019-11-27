@@ -20,11 +20,19 @@ public class CustromUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserAccount userAccount = userService.get(username);
+        String role;
+        if(userAccount.getIsServiceman()){
+            role="ADMIN";
+        }
+        else {
+            role = "USER";
+        }
+
         return CustomUserDetails.builder()
                 .id(userAccount.getDbId())
                 .username(userAccount.getUsername())
                 .password(userAccount.getPassword())
-           //     .authorities(Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))) //TODO role from DB
+                .authorities(Collections.singletonList(new SimpleGrantedAuthority(role))) //TODO role from DB
                 .build();
     }
 }

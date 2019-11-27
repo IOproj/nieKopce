@@ -1,9 +1,9 @@
 function loginBtnFunction(){
-    alert("Przycisk do logowania");
+    console.log("AAAAA")
 }
 
 function registerBtnFunction(){
-    alert("Przycisk do rejestracji");
+    console.log("AAAAA")
 }
 
 function gituwaBtnFunction(){

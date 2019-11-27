@@ -26,7 +26,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
             "/images/**",
             "/webjars/**",
             "/main/*",
-            "/user/**",
+            "/user/register",
             "/favicon"
     };
 
@@ -47,11 +47,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(WHITELIST).permitAll()
+                .antMatchers("/user").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .defaultSuccessUrl(MAINPAGE, true)
-                .permitAll()
+              //  .permitAll()
                 .and()
                 .logout().logoutSuccessHandler(customizeLogoutSuccessHandler)
                 .permitAll();

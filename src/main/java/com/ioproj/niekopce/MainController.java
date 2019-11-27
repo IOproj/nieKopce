@@ -30,18 +30,14 @@ public class MainController {
 
     CustomizeLogoutSuccessHandler customizeLogoutSuccessHandler;
     private  UserService userService;
+    private  JSCaller jsCaller;
 
     @GetMapping("/mainPage")
     public String getMainPage(Model model, Principal principal) {
         String name;
         try {
                 name = principal.getName();
-            if(userService.isAdmin(name)){
-                return  "redirect:/user/admin";
-            }
-            else {
-                return "redirect:/user/standard";
-            }
+        //    jsCaller.activateJS();
         } catch (NullPointerException e) {
             name = "niezalogowany";
         }

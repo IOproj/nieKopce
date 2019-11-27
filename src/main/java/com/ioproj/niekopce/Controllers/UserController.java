@@ -35,7 +35,7 @@ public class UserController {
     @GetMapping("/admin")
     String getAdminPage(Model model) {
         model.addAttribute("addUserDTO", new AddUserDTO());
-        return "main/adminPage";
+        return "admin/adminPage";
     }
 
     @GetMapping("/standard")
