@@ -26,4 +26,9 @@ public class Visit {
     private Certification certification;
     private String date;
     private String comment;
+
+    @Override
+    public String toString() {
+        return "Id:"+visitId+" data:"+date+" comment:"+comment;
+    }
 }

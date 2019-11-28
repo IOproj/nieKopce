@@ -32,7 +32,6 @@ public class NiekopceApplicationTests {
     @Autowired
     UserAccountRepository userAccountRepository;
 
-
     @Test
     public void testEmbeddedPg() throws Exception
     {
