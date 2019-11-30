@@ -27,6 +27,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
             "/webjars/**",
             "/main/*",
             "/user/register",
+            "/user/addUser",
             "/favicon"
     };
 

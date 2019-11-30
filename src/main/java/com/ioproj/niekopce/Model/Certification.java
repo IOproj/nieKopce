@@ -16,7 +16,7 @@ import java.util.List;
 public class Certification {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nextVisitDate;
     private Boolean isFinished;
@@ -24,6 +24,9 @@ public class Certification {
             cascade = CascadeType.ALL, // klasie Visit odpowiada za relację (zawiera klucz obcy do query by znaleźć wszystkie wizyty dla danej certyfikacji
             orphanRemoval = true)
     private List<Visit> visits;
+
+    @OneToOne(mappedBy = "certification")
+    private UserAccount userAccount;
 
 
     public void addVisitReview(Visit visit) {

@@ -1,6 +1,7 @@
 package com.ioproj.niekopce.Services;
 
 
+import com.ioproj.niekopce.Model.Certification;
 import com.ioproj.niekopce.Model.DTO.AddUserDTO;
 import com.ioproj.niekopce.Model.UserAccount;
 import com.ioproj.niekopce.Repositories.UserAccountRepository;
@@ -33,5 +34,12 @@ public class UserService {
         UserAccount userAccount = userAccountRepository.findByUsername(name).orElseThrow(()->
                 new RuntimeException("No user found"));
         return userAccount.getIsServiceman();
+    }
+
+    public void addCertification(String name) {
+        UserAccount toFind = get(name);
+        Certification certification = new Certification(1L,"nextVisit",false,null,toFind);
+        toFind.setCertification(certification);
+        userAccountRepository.updateCertification(certification,toFind.getUsername());
     }
 }

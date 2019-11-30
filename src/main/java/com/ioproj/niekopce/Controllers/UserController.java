@@ -14,6 +14,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,6 @@ public class UserController {
         return "user/register";
     }
 
-
     @GetMapping("/admin")
     String getAdminPage(Model model) {
         model.addAttribute("addUserDTO", new AddUserDTO());
@@ -41,6 +41,13 @@ public class UserController {
     @GetMapping("/standard")
     String getUserPage(Model model) {
         model.addAttribute("addUserDTO", new AddUserDTO());
+        return "main/userPage";
+    }
+
+    @GetMapping("/application")
+    String sendNewCertificationRequest(Principal principal) {
+        String name=principal.getName();
+        userService.addCertification(name);
         return "main/userPage";
     }
 

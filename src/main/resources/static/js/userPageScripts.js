@@ -42,4 +42,12 @@ function reactOnMouseClick() {
 
 function applicationButtonFunction(){
 
+    $.ajax({
+        url: 'application',
+        type:'GET',
+        error: function () {
+            console.log("ZLE")
+        }
+    })
+
 }

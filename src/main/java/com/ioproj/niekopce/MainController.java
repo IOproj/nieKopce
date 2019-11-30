@@ -37,7 +37,6 @@ public class MainController {
         String name;
         try {
                 name = principal.getName();
-        //    jsCaller.activateJS();
         } catch (NullPointerException e) {
             name = "niezalogowany";
         }
