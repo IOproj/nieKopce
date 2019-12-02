@@ -33,8 +33,13 @@ public class UserAccount {
 
     @Override
     public boolean equals(Object obj) {
-        //TODO: Implementation
-        return super.equals(obj);
+        if(this == obj){
+            return true;
+        }
+        if(obj == null || this.getClass() != obj.getClass()){
+            return false;
+        }
+        return ((obj instanceof UserAccount) && ((UserAccount) obj).dbId == this.dbId);
     }
 
     public AddUserDTO dto(){
