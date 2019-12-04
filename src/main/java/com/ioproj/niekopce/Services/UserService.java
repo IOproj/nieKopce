@@ -41,7 +41,6 @@ private final CertificationRepository certificationRepository;
     public void addCertification(String name) {
         UserAccount toFind = get(name);
         Certification certification = new Certification();
-        certification.setNextVisitDate("20190412");
         certificationRepository.save(certification);
         toFind.setCertification(certification);
         userAccountRepository.updateCertification(certification,toFind.getUsername());

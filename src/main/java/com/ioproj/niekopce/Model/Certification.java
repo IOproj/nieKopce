@@ -16,7 +16,7 @@ import java.util.List;
 public class Certification {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+   // @GeneratedValue(strategy = GenerationType.AUTO) wyłączone na potrzeby testów, ale docelowo można ustawiać takie ID jakie ma klient
     private Long id;
     private String nextVisitDate;
     private Boolean isFinished;
