@@ -18,6 +18,21 @@
     cursor: pointer;
 }
 
+.smallButton {
+    background-color: #0066ff;
+    color: white;
+    text-align: center;
+    border: none;
+    padding: 8px 8px;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 8px 4px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+
 .parent {
     display: flex;
     justify-content: center;

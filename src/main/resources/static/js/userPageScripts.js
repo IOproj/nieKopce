@@ -23,7 +23,7 @@ function calculaateActivity() {
             });
             $('#SignOutSubmit').click(function () {
                 $(this).dialog('close');
-            })
+            });
             document.getElementById("demo").innerHTML = "EXPIRED";
         }
     }, 1000);
@@ -34,20 +34,28 @@ function reactOnMouseClick() {
     $(document).mousedown(function () {
         now = new Date();
         countDownDate = new Date();
-        countDownDate.setSeconds(now.getSeconds()+10);
+        countDownDate.setMinutes(now.getMinutes()+5);
         console.log(countDownDate.getMinutes())
     })  ;
 }
 
 
-function applicationButtonFunction(){
-
+function sendApplication(){
     $.ajax({
-        url: 'application',
+        url: 'sendApplication',
         type:'GET',
         error: function () {
             console.log("ZLE")
         }
     })
+}
 
+function getApplications(){
+    $.ajax({
+        url: 'getApplications',
+        type:'GET',
+        error: function () {
+            console.log("ZLE")
+        }
+    })
 }

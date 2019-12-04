@@ -28,18 +28,6 @@ public class ServicemanServiceTest {
     @Autowired
     private CertificationRepository certificationRepository;
 
-    @TestConfiguration
-    static class EmployeeServiceImplTestContextConfiguration {
-
-        @Bean
-        public ServicemanService servicemanService() {
-            return new ServicemanService();
-        }
-    }
-
-    @Autowired
-    private ServicemanService service;
-
     @Before
     public void createCertification() {
         List<Certification> resultList = certificationRepository.findAll();

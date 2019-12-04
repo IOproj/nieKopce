@@ -15,10 +15,17 @@ import java.util.List;
 public class ServicemanService {
     private  CertificationRepository certificationRepository;
 
+    public List<Certification> getAllCertifications(){
+        return  certificationRepository.findAll();
+    }
+
+    public Certification getCertificationById(Long id){
+        return  certificationRepository.findCertificationById(id);
+    }
+
 
     public List<Certification> getNotHandledCertifications(){
-        List<Certification> notHandled = certificationRepository.finAllNotHandled();
-        return  notHandled;
+        return certificationRepository.finAllNotHandled();
     }
 
     public void setNextVisitDate(Long id){

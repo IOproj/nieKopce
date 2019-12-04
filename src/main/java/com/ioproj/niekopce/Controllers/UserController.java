@@ -1,22 +1,19 @@
 package com.ioproj.niekopce.Controllers;
 
 
+import com.ioproj.niekopce.Model.Certification;
 import com.ioproj.niekopce.Model.DTO.AddUserDTO;
-import com.ioproj.niekopce.Model.UserAccount;
+import com.ioproj.niekopce.Services.ServicemanService;
 import com.ioproj.niekopce.Services.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -24,6 +21,7 @@ import java.util.stream.Collectors;
 public class UserController {
 
     private UserService userService;
+    private ServicemanService servicemanService; //TODO: osobny kontroler dla serwisanta
 
 
     @GetMapping("/addUser")
@@ -44,13 +42,23 @@ public class UserController {
         return "main/userPage";
     }
 
-    @GetMapping("/application")
+    @GetMapping("/sendApplication")
     String sendNewCertificationRequest(Principal principal) {
-        String name=principal.getName();
+        String name = principal.getName();
         userService.addCertification(name);
         return "main/userPage";
     }
 
+    @GetMapping("/getApplications")
+    String getApplications(Principal principal) {
+        String name = principal.getName();
+        System.out.println(name);
+        List<Certification> certifications = servicemanService.getAllCertifications();
+        for(Certification certification:certifications){
+            System.out.println(certification.getNextVisitDate());
+        }
+        return "main/userPage";
+    }
 
 
     @PostMapping("/addUser")
