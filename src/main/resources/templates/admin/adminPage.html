@@ -23,6 +23,8 @@
 
     <!-- Customs css style sheets -->
     <link rel="stylesheet" type="text/css" href="/css/custom.css"/> <!-- TODO: Analogicznie -->
+
+    <!-- Skrypty JavaScript -->
     <script type="text/javascript" src="/js/userPageScripts.js"></script>
 
     <script th:src="@{/js/jquery-1.6.2.js}" type="text/javascript"></script>
@@ -36,27 +38,29 @@
     </script>
 
     <script>
-        var next_visit_date;
-        var is_finished;
+        var nextVisitDate;
+        var isFinished;
 
-        $(document).ready(function () {                         //TODO: Dokończyć, przetestować, przenieść do pliku .js
+        $(document).ready(function () {
             $('#getApplicationButton').click(function () {
                 $.ajax({
                     url: '/admin/ajax/testlist',
                     type: 'GET',
                     dataType: "json",
                     data: {
-                        'next_visit_date': next_visit_date,
-                        'is_finished': is_finished
+                        'nextVisitDate': nextVisitDate,
+                        'isFinished': isFinished
                     }
                 }).done(function (data) {
                     var table = {};
                     $('#certificationsTable').empty();
                     $.each(data, function (i, parameters) {
-                        var next_visit_date = parameters.next_visit_date;
-                        var is_finished = parameters.is_finished;
-                        table="<tr><td>" + next_visit_date + "</td><td>" + is_finished + "</td><td><button id='handleVisitButton' class='smallButton'>Obsłuż</button></td></tr>"
-                    })      //TODO: Dorobić wyświetlanie tej listy
+                        var nextVisitDate = parameters.nextVisitDate;
+                        var isFinished = parameters.isFinished;
+                        table="<tr><td>" + nextVisitDate + "</td><td>" + isFinished + "</td><td><button id='handleVisitButton' class='smallButton'>Obsłuż</button></td>" +
+                            "<td><button id='handleVisitButton' class='smallButton' onclick='viewHistory()'>Historia</button></tr>"
+                        $('#certificationsTable').append(table);
+                    })
                 })
             })
         })

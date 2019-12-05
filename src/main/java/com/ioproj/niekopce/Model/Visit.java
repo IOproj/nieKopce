@@ -1,6 +1,7 @@
 package com.ioproj.niekopce.Model;
 
 
+import com.ioproj.niekopce.Model.DTO.VisitDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,8 +16,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Visit {
 
-    //TODO: Powiązać to z Certification obustronnym OneToMany
-
     @Id
     @GeneratedValue
     private Long visitId;
@@ -30,5 +29,12 @@ public class Visit {
     @Override
     public String toString() {
         return "Id:"+visitId+" data:"+date+" comment:"+comment;
+    }
+
+    public VisitDTO dto(){
+        return  VisitDTO.builder()
+                .comment(this.comment)
+                .date(this.date)
+                .build();
     }
 }

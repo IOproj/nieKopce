@@ -19,7 +19,7 @@ function calculaateActivity() {
                 title: "Uwaga!",
                 width: 645,
                 height: 300,
-                modal: true,
+                modal: true
             });
             $('#SignOutSubmit').click(function () {
                 $(this).dialog('close');
@@ -59,3 +59,12 @@ function getApplications(){
         }
     })
 }
+
+function viewHistory(){
+//TODO Implementation
+}
+
+
+
+
+//TODO Rozdzielić to na więcej plików JS

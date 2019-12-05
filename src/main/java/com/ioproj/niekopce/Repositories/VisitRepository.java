@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static org.hibernate.loader.Loader.SELECT;
 
 @Repository
 public interface VisitRepository extends JpaRepository<Visit,Long> {

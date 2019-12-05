@@ -21,8 +21,6 @@ import java.util.List;
 public class UserController {
 
     private UserService userService;
-    private ServicemanService servicemanService; //TODO: osobny kontroler dla serwisanta
-
 
     @GetMapping("/addUser")
     String addMedPage(Model model) {

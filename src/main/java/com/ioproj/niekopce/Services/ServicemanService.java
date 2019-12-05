@@ -3,10 +3,8 @@ package com.ioproj.niekopce.Services;
 import com.ioproj.niekopce.Model.Certification;
 import com.ioproj.niekopce.Repositories.CertificationRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,7 +19,6 @@ public class ServicemanService {
     public Certification getCertificationById(Long id){
         return  certificationRepository.findCertificationById(id);
     }
-
 
     public List<Certification> getNotHandledCertifications(){
         return certificationRepository.finAllNotHandled();
