@@ -42,7 +42,7 @@
         $(document).ready(function () {                         //TODO: Dokończyć, przetestować, przenieść do pliku .js
             $('#getApplicationButton').click(function () {
                 $.ajax({
-                    url: 'getApplications',
+                    url: '/admin/ajax/testlist',
                     type: 'GET',
                     dataType: "json",
                     data: {
@@ -56,7 +56,7 @@
                         var next_visit_date = parameters.next_visit_date;
                         var is_finished = parameters.is_finished;
                         table="<tr><td>" + next_visit_date + "</td><td>" + is_finished + "</td><td><button id='handleVisitButton' class='smallButton'>Obsłuż</button></td></tr>"
-                    })
+                    })      //TODO: Dorobić wyświetlanie tej listy
                 })
             })
         })
@@ -65,15 +65,14 @@
 
 </head>
 
-<body onload="calculaateActivity()">    <!-- TODO: Dorobić onclick -->
+<body onload="calculaateActivity()">
 
 <p id="demo"></p>
 
 
 <h1>Default admin page</h1>
 <div class="parent">
-    <input type="button" id="getApplicationButton" class="button" value="Przeglądaj zgłoszenia"
-           onclick="sendApplication()">
+    <input type="button" id="getApplicationButton" class="button" value="Przeglądaj zgłoszenia">
     <a href="/main/returnMain" class="button">Powrót na stronę główną</a>
     <a href="/logout" class="button">Wyloguj</a>
 </div>

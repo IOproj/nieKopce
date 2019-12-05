@@ -46,6 +46,7 @@ public class ServicemanServiceTest {
     public void shouldFindNoObjectWhenAllModified() {
         Certification certification = certificationRepository.findCertificationById(100L);
         certification.setNextVisitDate("chengedDate");
+        certificationRepository.save(certification);
         List<Certification> resultList = certificationRepository.finAllNotHandled();
         Assert.assertEquals(0, resultList.size());
 

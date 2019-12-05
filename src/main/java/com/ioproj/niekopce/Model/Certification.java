@@ -1,5 +1,6 @@
 package com.ioproj.niekopce.Model;
 
+import com.ioproj.niekopce.Model.DTO.CertificationDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,4 +34,13 @@ public class Certification {
         visits.add(visit);
         visit.setCertification(this);
     }
+
+    public CertificationDTO dto(){
+        return  CertificationDTO.builder()
+                .nextVisitDate(this.nextVisitDate)
+                .isFinished(this.isFinished)
+                .build();
+    }
+
+
 }

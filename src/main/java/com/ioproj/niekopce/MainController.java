@@ -37,7 +37,7 @@ public class MainController {
         try {
             name = principal.getName();
             if (userService.isAdmin(name)) {
-                return "redirect:/user/admin";
+                return "redirect:/admin/adminPage";
             } else {
                 return "redirect:/user/standard";
             }

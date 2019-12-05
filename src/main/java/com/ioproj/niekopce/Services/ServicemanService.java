@@ -11,9 +11,8 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 public class ServicemanService {
-    private  CertificationRepository certificationRepository;
+    private CertificationRepository certificationRepository;
 
     public List<Certification> getAllCertifications(){
         return  certificationRepository.findAll();

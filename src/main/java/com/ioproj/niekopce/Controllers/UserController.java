@@ -30,12 +30,6 @@ public class UserController {
         return "user/register";
     }
 
-    @GetMapping("/admin")
-    String getAdminPage(Model model) {
-        model.addAttribute("addUserDTO", new AddUserDTO());
-        return "admin/adminPage";
-    }
-
     @GetMapping("/standard")
     String getUserPage(Model model) {
         model.addAttribute("addUserDTO", new AddUserDTO());
@@ -48,18 +42,6 @@ public class UserController {
         userService.addCertification(name);
         return "main/userPage";
     }
-
-    @GetMapping("/getApplications")
-    String getApplications(Principal principal) {
-        String name = principal.getName();
-        System.out.println(name);
-        List<Certification> certifications = servicemanService.getAllCertifications();
-        for(Certification certification:certifications){
-            System.out.println(certification.getNextVisitDate());
-        }
-        return "main/userPage";
-    }
-
 
     @PostMapping("/addUser")
     String addMed(@ModelAttribute @Valid AddUserDTO addUserDTO, Errors errors, Model model) {
