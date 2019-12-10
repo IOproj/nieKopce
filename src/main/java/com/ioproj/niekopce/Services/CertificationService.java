@@ -23,4 +23,8 @@ public class CertificationService {
         }
         return  resultList;
     }
+
+    public Certification getCertificationById(Long id){
+        return  certificationRepository.findCertificationById(id);
+    }
 }

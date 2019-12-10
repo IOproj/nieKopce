@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Setter
 public class CertificationDTO  implements Serializable {
 
+    private String certificationID;
     private String nextVisitDate;
     private Boolean isFinished;
 }

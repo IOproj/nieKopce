@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Visit {
 
     @Id
-    @GeneratedValue
+   // @GeneratedValue wyłączone na potrzeby testów
     private Long visitId;
 
     @ManyToOne(fetch = FetchType.LAZY)

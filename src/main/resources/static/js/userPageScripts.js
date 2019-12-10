@@ -45,12 +45,15 @@ function sendApplication(){
         url: 'sendApplication',
         type:'GET',
         error: function () {
-            console.log("ZLE")
+            alert("Błąd wysyłania zgłoszenia - czy aplikowałeś już wcześniej?");
+        },
+        success: function () {
+            alert("Zgłoszenie zostało wysłane");
         }
     })
 }
 
-function getApplications(){
+function getApplications(){ // NIEUŻYWANE OBECNIE
     $.ajax({
         url: 'getApplications',
         type:'GET',
@@ -58,10 +61,6 @@ function getApplications(){
             console.log("ZLE")
         }
     })
-}
-
-function viewHistory(){
-//TODO Implementation
 }
 
 

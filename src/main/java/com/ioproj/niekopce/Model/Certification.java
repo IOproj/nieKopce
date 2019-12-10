@@ -17,7 +17,7 @@ import java.util.List;
 public class Certification {
 
     @Id
-   // @GeneratedValue(strategy = GenerationType.AUTO) wyłączone na potrzeby testów, ale docelowo można ustawiać takie ID jakie ma klient
+    @GeneratedValue(strategy = GenerationType.AUTO)// wyłączone na potrzeby testów, ale docelowo można ustawiać takie ID jakie ma klient
     private Long id;
     private String nextVisitDate;
     private Boolean isFinished;
@@ -27,6 +27,7 @@ public class Certification {
     private List<Visit> visits;
 
     @OneToOne(mappedBy = "certification")
+    @JoinColumn(name = "db_id",unique = true)
     private UserAccount userAccount;
 
 
@@ -39,6 +40,7 @@ public class Certification {
         return  CertificationDTO.builder()
                 .nextVisitDate(this.nextVisitDate)
                 .isFinished(this.isFinished)
+                .certificationID(this.id.toString())
                 .build();
     }
 
