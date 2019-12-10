@@ -1,5 +1,6 @@
 package com.ioproj.niekopce.Model;
 
+import com.ioproj.niekopce.Model.DTO.CertificationDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.List;
 public class Certification {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)// wyłączone na potrzeby testów, ale docelowo można ustawiać takie ID jakie ma klient
     private Long id;
     private String nextVisitDate;
     private Boolean isFinished;
@@ -25,9 +26,23 @@ public class Certification {
             orphanRemoval = true)
     private List<Visit> visits;
 
+    @OneToOne(mappedBy = "certification")
+    @JoinColumn(name = "db_id",unique = true)
+    private UserAccount userAccount;
+
 
     public void addVisitReview(Visit visit) {
         visits.add(visit);
         visit.setCertification(this);
     }
+
+    public CertificationDTO dto(){
+        return  CertificationDTO.builder()
+                .nextVisitDate(this.nextVisitDate)
+                .isFinished(this.isFinished)
+                .certificationID(this.id.toString())
+                .build();
+    }
+
+
 }

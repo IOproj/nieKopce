@@ -18,6 +18,40 @@
     cursor: pointer;
 }
 
+.smallButton {
+    background-color: #0066ff;
+    color: white;
+    text-align: center;
+    border: none;
+    padding: 8px 8px;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 8px 4px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.CustomTH {  <!-- TODO Poprawić nazwę -->
+    padding: 8px 8px;
+}
+
+.PopUpLabel{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 200px;
+    text-align: left;
+}
+.PopUpInput {
+    display: inline-block;
+    float: left;
+}
+
+.CustomInput {
+   margin-left: 70px;
+   margin-right: 70px;
+}
+
 .parent {
     display: flex;
     justify-content: center;

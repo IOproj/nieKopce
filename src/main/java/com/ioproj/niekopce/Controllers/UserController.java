@@ -1,21 +1,19 @@
 package com.ioproj.niekopce.Controllers;
 
 
+import com.ioproj.niekopce.Model.Certification;
 import com.ioproj.niekopce.Model.DTO.AddUserDTO;
-import com.ioproj.niekopce.Model.UserAccount;
+import com.ioproj.niekopce.Services.ServicemanService;
 import com.ioproj.niekopce.Services.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -24,18 +22,10 @@ public class UserController {
 
     private UserService userService;
 
-
     @GetMapping("/addUser")
     String addMedPage(Model model) {
         model.addAttribute("addUserDTO", new AddUserDTO());
         return "user/register";
-    }
-
-
-    @GetMapping("/admin")
-    String getAdminPage(Model model) {
-        model.addAttribute("addUserDTO", new AddUserDTO());
-        return "admin/adminPage";
     }
 
     @GetMapping("/standard")
@@ -44,7 +34,12 @@ public class UserController {
         return "main/userPage";
     }
 
-
+    @GetMapping("/sendApplication")
+    String sendNewCertificationRequest(Principal principal) {
+        String name = principal.getName();
+        userService.addCertification(name);
+        return "main/userPage";
+    }
 
     @PostMapping("/addUser")
     String addMed(@ModelAttribute @Valid AddUserDTO addUserDTO, Errors errors, Model model) {

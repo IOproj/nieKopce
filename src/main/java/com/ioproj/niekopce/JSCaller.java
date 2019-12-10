@@ -26,9 +26,7 @@ public class JSCaller {
             engine.eval(text);
             Invocable invocable = (Invocable)engine;
             invocable.invokeFunction("loginBtnFunction");
-        } catch (ScriptException | FileNotFoundException | NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ScriptException | NoSuchMethodException | IOException e) {
             e.printStackTrace();
         }
     }

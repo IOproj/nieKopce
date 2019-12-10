@@ -19,11 +19,11 @@ function calculaateActivity() {
                 title: "Uwaga!",
                 width: 645,
                 height: 300,
-                modal: true,
+                modal: true
             });
             $('#SignOutSubmit').click(function () {
                 $(this).dialog('close');
-            })
+            });
             document.getElementById("demo").innerHTML = "EXPIRED";
         }
     }, 1000);
@@ -34,12 +34,36 @@ function reactOnMouseClick() {
     $(document).mousedown(function () {
         now = new Date();
         countDownDate = new Date();
-        countDownDate.setSeconds(now.getSeconds()+10);
+        countDownDate.setMinutes(now.getMinutes()+5);
         console.log(countDownDate.getMinutes())
     })  ;
 }
 
 
-function applicationButtonFunction(){
-
+function sendApplication(){
+    $.ajax({
+        url: 'sendApplication',
+        type:'GET',
+        error: function () {
+            alert("Błąd wysyłania zgłoszenia - czy aplikowałeś już wcześniej?");
+        },
+        success: function () {
+            alert("Zgłoszenie zostało wysłane");
+        }
+    })
 }
+
+function getApplications(){ // NIEUŻYWANE OBECNIE
+    $.ajax({
+        url: 'getApplications',
+        type:'GET',
+        error: function () {
+            console.log("ZLE")
+        }
+    })
+}
+
+
+
+
+//TODO Rozdzielić to na więcej plików JS

@@ -5,11 +5,11 @@
     <title>Niekopce </title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.10.3/jquery-ui.css"></script>
 
     <!-- Bootstrap core CSS -->
@@ -17,20 +17,141 @@
 
     <!-- Material Design Bootstrap -->
     <link href="/static/css/mdb.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
     <!-- Customs css style sheets -->
-    <link rel="stylesheet" type="text/css" href="/css/custom.css" /> <!-- TODO: Analogicznie -->
-    <script type="text/javascript" src="/js/userPageScripts.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/custom.css"/> <!-- TODO: Analogicznie -->
 
-<script th:src="@{/js/jquery-1.6.2.js}" type="text/javascript"></script>
+    <!-- Skrypty JavaScript -->
+    <script type="text/javascript" src="/js/userPageScripts.js"></script>
+    <script type="text/javascript" src="/js/adminScripts.js"></script>
+
+    <script th:src="@{/js/jquery-1.6.2.js}" type="text/javascript"></script>
+
+
+    <script>
+        var now = new Date();
+        var countDownDate = new Date();
+        countDownDate.setMinutes(countDownDate.getMinutes() + 5);
+        reactOnMouseClick();
+    </script>
+
+    <script>
+        var nextVisitDate;
+        var isFinished;
+        var certificationID;
+        var date;
+        var comment;
+
+        $(document).ready(function () {
+            $('#getApplicationButton').click(function () {
+                $.ajax({
+                    url: '/admin/ajax/testlist',
+                    type: 'GET',
+                    dataType: "json",
+                    data: {
+                        'nextVisitDate': nextVisitDate,
+                        'isFinished': isFinished,
+                        'certificationID': certificationID
+                    }
+                }).done(function (data) {
+                    var table = {};
+                    $('#certificationsTable').empty();
+                    $.each(data, function (i, parameters) {
+                        var nextVisitDate = parameters.nextVisitDate;
+                        var isFinished = parameters.isFinished;
+                        var certificationID = parameters.certificationID;
+                        table = "<tr>" +
+                            "<td class=\"CustomTH\">" + certificationID + "</td>" +
+                            "<td class=\"CustomTH\">" + nextVisitDate + "</td>" +
+                            "<td class=\"CustomTH\">" + isFinished + "</td>" +
+                            "<td><button id='handleVisitButton' class='smallButton' onclick='handleCertification(" + certificationID + ")'>Obsłuż</button></td>" +
+                            "<td><button id='viewVisitsHistory' class='smallButton' onclick='viewHistory(" + certificationID + ")'>Historia</button>" +
+                            "<td><button id='addVisitRaport' class='smallButton' onclick='addVisit(" + certificationID + ")'>Dodaj wizytę</button>" +
+                            "</tr>";
+                        $('#certificationsTable').append(table);
+                    })
+                })
+            })
+        })
+    </script>
 
 
 </head>
-<body>
+
+<body onload="calculaateActivity()">
+
+<p id="demo"></p>
+
+
 <h1>Default admin page</h1>
-<a href="/main/returnMain" class="button">Powrót na stronę główną</a>
+<div class="parent">
+    <input type="button" id="getApplicationButton" class="button" value="Przeglądaj zgłoszenia">
+    <a href="/main/returnMain" class="button">Powrót na stronę główną</a>
+    <a href="/logout" class="button">Wyloguj</a>
+</div>
+
+
+<!------------------- TABELA DO WYŚWIETLANIA CERTYFIKACJI ------------------------------------------------------------->
+<table id="certificationsTable">
+    <thead>
+    <tr>
+        <label for="cert" class="CustomTH">ID</label>
+        <label for="next_visit" class="CustomTH">Następna wizyta</label>
+        <label for="status" class="CustomTH">Status</label>
+        <!--  <th>customer_name</th>
+          <th>customer_lastname</th>
+          <th>address</th> -->
+        <th id="cert" class="CustomTH"></th>
+        <th id="next_visit" class="CustomTH"></th>
+        <th id="status" class="CustomTH"></th>
+    </tr>
+    </thead>
+</table>
+
+<table id="visitsTable">
+    <thead>
+    <tr>
+        <th>date</th>
+        <th>comment</th>
+    </tr>
+    </thead>
+</table>
+
+
+<div id="logoutPopUp" style="display: none">
+    Zostałeś wylogowany ze względu na brak aktywności
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out" id="SignOutSubmit"/>
+    </form>
+</div>
+
+<div id="planVisitPopUp" style="display: none">
+    <tr>
+        <td>Data planowanej wizyty
+        <td><input id="inputDateField" type="text"/></td>
+        </td>
+    </tr>
+</div>
+
+<div id="addVisitPopuUp" style="display: none">
+    <tr>
+        <label for="inputCertificationID" class="PopUpLabel">ID wizyty</label>
+        <td><input id="inputCertificationID" type="text"  class="PopUpInput" readonly/></td>
+    </tr>
+    <br>
+     <tr>
+         <label for="inputVisitsDate" class="PopUpLabel">Data wizyty</label>
+         <td><input id="inputVisitsDate" type="text"  class="PopUpInput"/></td>
+     </tr>
+    <br>
+    <tr>
+        <label for="inputVisitsDate" class="PopUpLabel">Komentarz</label>
+        <td><input id="inputComment" type="text" class="PopUpInput"/></td>
+    </tr>
+</div>
+
 </body>
 </html>

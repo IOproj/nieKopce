@@ -3,9 +3,7 @@ package com.ioproj.niekopce.Model;
 import com.ioproj.niekopce.Model.DTO.AddUserDTO;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import java.util.UUID;
 
@@ -17,13 +15,16 @@ import java.util.UUID;
 public class UserAccount {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long dbId;
     private UUID uuid;
     private String username;
     private String password;
     private String email;
     private Boolean isServiceman;
+
+    @OneToOne
+    private Certification certification;
 
     @Override
     public int hashCode() {
@@ -32,8 +33,13 @@ public class UserAccount {
 
     @Override
     public boolean equals(Object obj) {
-        //TODO: Implementation
-        return super.equals(obj);
+        if(this == obj){
+            return true;
+        }
+        if(obj == null || this.getClass() != obj.getClass()){
+            return false;
+        }
+        return ((obj instanceof UserAccount) && ((UserAccount) obj).dbId == this.dbId);
     }
 
     public AddUserDTO dto(){
@@ -47,5 +53,6 @@ public class UserAccount {
     public UserAccount(AddUserDTO dto){
         this.username=dto.getUsername();
         this.email=dto.getEmail();
+        this.isServiceman=false;
     }
 }

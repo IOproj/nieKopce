@@ -29,15 +29,18 @@ import java.security.Principal;
 public class MainController {
 
     CustomizeLogoutSuccessHandler customizeLogoutSuccessHandler;
-    private  UserService userService;
-    private  JSCaller jsCaller;
+    private UserService userService;
 
     @GetMapping("/mainPage")
     public String getMainPage(Model model, Principal principal) {
         String name;
         try {
-                name = principal.getName();
-        //    jsCaller.activateJS();
+            name = principal.getName();
+            if (userService.isAdmin(name)) {
+                return "redirect:/admin/adminPage";
+            } else {
+                return "redirect:/user/standard";
+            }
         } catch (NullPointerException e) {
             name = "niezalogowany";
         }
@@ -58,17 +61,15 @@ public class MainController {
     }
 
 
-
-
     @GetMapping("/logout")
-    public String logoutDo(HttpServletRequest request,HttpServletResponse response, Principal principal){
-        HttpSession session= request.getSession(false);
+    public String logoutDo(HttpServletRequest request, HttpServletResponse response, Principal principal) {
+        HttpSession session = request.getSession(false);
         SecurityContextHolder.clearContext();
-        session= request.getSession(false);
-        if(session != null) {
+        session = request.getSession(false);
+        if (session != null) {
             session.invalidate();
         }
-        for(Cookie cookie : request.getCookies()) {
+        for (Cookie cookie : request.getCookies()) {
             cookie.setMaxAge(0);
         }
         String name;
