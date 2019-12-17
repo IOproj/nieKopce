@@ -21,7 +21,7 @@ public class Visit {
     private Long visitId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "certification_id")
+    //@JoinColumn(name = "certification_id")
     private Certification certification;
     private String date;
     private String comment;

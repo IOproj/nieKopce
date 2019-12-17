@@ -2,7 +2,44 @@
 .h1 {
     color: chartreuse;
     text-align: center;
+}
 
+/* Sekcja paska navigacji */
+.navbar-brand-custom {
+    font-size: 24px;
+}
+.navbar-custom {
+    background-color: #00AB44;
+}
+.navbar-nav {
+    flex-direction: row;
+}
+.navbar-container li{
+    margin: 0px 10px;
+    font-size: 16px;
+    color: #F8F6FA !important;
+}
+.btn-register {
+    background-color: #F8F6FA;
+    border-color: #F8F6FA;
+    color: #00AB44;
+}
+.btn-register:hover{
+    background-color: #00AB44;
+    border-color: #F8F6FA;
+    color: #F8F6FA;
+    transition-duration: 0.15s;
+}
+.btn-login {
+    background-color: #00AB44;
+    border-color: #F8F6FA;
+    color: #F8F6FA;
+}
+.btn-login:hover {
+    background-color: #F8F6FA;
+    border-color: #F8F6FA;
+    color: #00AB44;
+    transition-duration: 0.15s;
 }
 
 .button {
