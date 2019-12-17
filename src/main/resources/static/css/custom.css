@@ -4,7 +4,7 @@
     text-align: center;
 }
 
-/* Sekcja paska navigacji */
+/* Navigation bar section */
 .navbar-brand-custom {
     font-size: 24px;
 }
@@ -14,10 +14,10 @@
 .navbar-nav {
     flex-direction: row;
 }
-.navbar-container li{
-    margin: 0px 10px;
-    font-size: 16px;
-    color: #F8F6FA !important;
+.navbar-container li, a{
+    margin: 0px 5px;
+    font-size: 18px;
+    color: #dfdde1 !important;
 }
 .btn-register {
     background-color: #F8F6FA;
@@ -25,10 +25,17 @@
     color: #00AB44;
 }
 .btn-register:hover{
-    background-color: #00AB44;
+    background-color: #F8F6FA;
     border-color: #F8F6FA;
-    color: #F8F6FA;
-    transition-duration: 0.15s;
+    color: #00AB44;
+    border-radius: 15px;
+    transition: all 0.2s ease 0s;
+}
+.btn-register:focus {
+    background-color: #F8F6FA !important;
+    border-color: #F8F6FA !important;
+    color: #00AB44 !important;
+    box-shadow: 0 0 0.5em #545454 !important;
 }
 .btn-login {
     background-color: #00AB44;
@@ -36,11 +43,19 @@
     color: #F8F6FA;
 }
 .btn-login:hover {
-    background-color: #F8F6FA;
+    background-color: #00AB44;
     border-color: #F8F6FA;
-    color: #00AB44;
-    transition-duration: 0.15s;
+    color: #F8F6FA;
+    border-radius: 15px;
+/*    box-shadow: 0 0 0.5em #545454;*/
+    transition: all 0.2s ease 0s;
 }
+.btn-login:focus {
+    background-color: #00AB44 !important;
+    border-color: #F8F6FA !important;
+    box-shadow: 0 0 0.5em #545454 !important;
+}
+/* End navigation bar section */
 
 .button {
     background-color: #4CAF50;
