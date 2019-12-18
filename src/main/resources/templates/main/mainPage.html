@@ -77,11 +77,23 @@
             <li class="nav-item nav-buttons">
                 <div class="nav-dropdown">
                     <button class="btn btn-primary btn-register" type="button" onclick="location.href='/user/addUser'">Rejestracja</button>
-                    <button class="btn btn-outline-primary btn-login" type="button" onclick="dropdownLoginOpen()">Logowanie</button>
+                    <button id = "loginButton" class="btn btn-outline-primary btn-login" type="button" onclick="dropdownLoginOpen()">Logowanie</button>
                     <div id="loginDropdown" class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Nazwa użytkownika</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Użytkownik">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Hasło</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Hasło">
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Zapamiętaj mnie</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Zaloguj</button>
+                        </form>
                     </div>
                 </div>
             </li>

@@ -88,6 +88,7 @@
     border: rgba(152, 152, 152, 0.53) solid 0.25pt;
     border-radius: 5px;
     margin-top: 5px;
+    padding: 5px;
     display: none;
     position: absolute;
     background-color: #FFFFFF;
@@ -101,7 +102,27 @@
     text-decoration: none;
     display: block;
 }
-.show {display:block;}
+.dropdown-content .btn {
+    margin: 0 auto;
+    background-color: #00AB44;
+    border-color: #00AB44;
+    color: #F3FBF3;
+}
+.dropdown-content .btn:hover {
+    background-color: #00AB44;
+    border-color: #00AB44;
+    color: #F3FBF3;
+    border-radius: 15px;
+    transition: all 0.2s ease 0s;
+}
+.dropdown-content .btn:focus {
+    background-color: #00AB44 !important;
+    border-color: #00AB44 !important;
+    box-shadow: 0 0 0.5em rgba(0, 47, 0, 0.85) !important;
+}
+.show {
+    display: block;
+}
 /* End navigation bar section */
 
 .button {
