@@ -63,17 +63,27 @@
     <div class="navbar-container">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <!-- TODO: Dodac przekierowanie HTML. -->
+                <a class="nav-link nav-active" href="#">Home</a>
             </li>
             <li class="nav-item">
+                <!-- TODO: Dodac przekierowanie HTML. -->
                 <a class="nav-link" href="#">Misja</a>
             </li>
             <li class="nav-item">
+                <!-- TODO: Dodac przekierowanie servlet. -->
                 <a class="nav-link" href="#">Baza wiedzy</a>
             </li>
-            <li class="nav-item">
-                <button class="btn btn-primary btn-register" type="button" onclick="location.href='/user/addUser'">Rejestracja</button>
-                <button class="btn btn-outline-primary btn-login" type="button" onclick="location.href='/login'">Logowanie</button>
+            <li class="nav-item nav-buttons">
+                <div class="nav-dropdown">
+                    <button class="btn btn-primary btn-register" type="button" onclick="location.href='/user/addUser'">Rejestracja</button>
+                    <button class="btn btn-outline-primary btn-login" type="button" onclick="dropdownLoginOpen()">Logowanie</button>
+                    <div id="loginDropdown" class="dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
