@@ -2,6 +2,7 @@ package com.ioproj.niekopce.Services;
 
 import com.ioproj.niekopce.Model.Certification;
 import com.ioproj.niekopce.Model.DTO.CertificationDTO;
+import com.ioproj.niekopce.Model.UserAccount;
 import com.ioproj.niekopce.Repositories.CertificationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,22 @@ public class CertificationService {
 
     public Certification getCertificationById(Long id){
         return  certificationRepository.findCertificationById(id);
+    }
+
+    public List<String> checkUsersCertification(UserAccount user) {
+         String queryResult=certificationRepository.getCertificationStatus(user);
+         List<String> statusInfo = new ArrayList<>(2);
+         String status=queryResult.substring(0,queryResult.indexOf(','));
+         if(status.equals("false")){
+             status="niezakończona";
+         }
+         statusInfo.add(status);
+        String nextVisit=queryResult.substring(queryResult.indexOf(',')+1,queryResult.length());
+        if(nextVisit.equals("null")){
+            nextVisit="Termin wizyty nieustalony";
+        }
+        statusInfo.add(nextVisit);
+        System.out.println(statusInfo.get(0));
+        return statusInfo;
     }
 }

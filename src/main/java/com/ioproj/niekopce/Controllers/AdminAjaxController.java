@@ -8,6 +8,7 @@ import com.ioproj.niekopce.Services.VisitService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -30,13 +31,4 @@ public class AdminAjaxController {
         System.out.println(certificationID);
         return visitService.getAllCertificationsVisit(Long.valueOf(certificationID));
     }
-
-    @RequestMapping(value = "/addVisit", method = RequestMethod.GET)
-    public @ResponseBody
-    Boolean addVusut(@RequestParam("certificationID")String certificationID,@RequestParam("comment") String comment,
-                        @RequestParam("date")String date){
-        visitService.addVisit(certificationService.getCertificationById(Long.valueOf(certificationID)),comment,date);
-        return true;
-    }
-
 }

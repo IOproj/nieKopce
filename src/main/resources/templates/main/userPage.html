@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:text-align="http://www.w3.org/1999/xhtml"
+      xmlns:left="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Niekopce </title>
@@ -36,18 +37,23 @@
     </script>
 </head>
 
-<body onload="calculaateActivity()">    <!-- TODO: Dorobić onclick -->
+<body onload="calculaateActivity()">    <!-- TODO: Dorobić oncloe -->
 
 <p id="demo"></p>
 
-
 <h1>Default customer page</h1>
 <div class="parent">
-    <input type="button" id="applicationButton" class="button" value="Zamów wizytę" onclick="sendApplication()">
+    <input type="button" id="applicationButton" class="button" value="Zamów wizytę" onclick="applicationButtonFunction()">
     <a href="/main/returnMain" class="button">Powrót na stronę główną</a>
-    <a href="/logout" class="button">Wyloguj</a>
 </div>
 
+<br><br>
+<div class="parent">
+<td     >Status twojej certyfikacji: </td>
+<tr th:each="status : ${certificationStatus}">
+    <td th:text="${status}"></td>
+</tr>
+</div>
 
 <div id="logoutPopUp" style="display: none">
     Zostałeś wylogowany ze względu na brak aktywności
