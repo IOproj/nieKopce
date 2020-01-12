@@ -35,7 +35,8 @@ public class AdminAjaxController {
     @RequestMapping(value = "/addVisit", method = RequestMethod.GET)
     public @ResponseBody
     Boolean addVusut(@RequestParam("certificationID")String certificationID,@RequestParam("comment") String comment,
-                     @RequestParam("date")String date){
+                     @RequestParam("date")String date, @RequestParam("finish")String finish){
+        System.out.println(finish);
         visitService.addVisit(certificationService.getCertificationById(Long.valueOf(certificationID)),comment,date);
         return true;
     }
