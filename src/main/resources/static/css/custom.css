@@ -167,6 +167,11 @@
     float: left;
 }
 
+.PopUpInput2 {
+    display: block;
+    float: left;
+}
+
 .CustomInput {
    margin-left: 70px;
    margin-right: 70px;

@@ -16,30 +16,33 @@ public class CertificationService {
 
     private final CertificationRepository certificationRepository;
 
-    public List<CertificationDTO> getAllCertifications(){
+    public List<CertificationDTO> getAllCertifications() {
         List<Certification> dbCertifications = certificationRepository.findAll();
         List<CertificationDTO> resultList = new ArrayList<CertificationDTO>();
-        for(Certification certification:dbCertifications){
+        for (Certification certification : dbCertifications) {
             resultList.add(certification.dto());
         }
-        return  resultList;
+        return resultList;
     }
 
-    public Certification getCertificationById(Long id){
-        return  certificationRepository.findCertificationById(id);
+    public Certification getCertificationById(Long id) {
+        return certificationRepository.findCertificationById(id);
     }
 
     public List<String> checkUsersCertification(UserAccount user) {
-         String queryResult=certificationRepository.getCertificationStatus(user);
-         List<String> statusInfo = new ArrayList<>(2);
-         String status=queryResult.substring(0,queryResult.indexOf(','));
-         if(status.equals("false")){
-             status="niezakończona";
-         }
-         statusInfo.add(status);
-        String nextVisit=queryResult.substring(queryResult.indexOf(',')+1,queryResult.length());
-        if(nextVisit.equals("null")){
-            nextVisit="Termin wizyty nieustalony";
+        String queryResult = certificationRepository.getCertificationStatus(user);
+        List<String> statusInfo = new ArrayList<>(2);
+        String status = queryResult.substring(0, queryResult.indexOf(','));
+        String nextVisit = queryResult.substring(queryResult.indexOf(',') + 1, queryResult.length());
+        if (status.equals("false")) {
+            status = "niezakończona";
+        } else if (status.equals("true")) {
+            status = "zakończona";
+            nextVisit = "";
+        }
+        statusInfo.add(status);
+        if (nextVisit.equals("null") && status.equals("niezakończona")) {
+            nextVisit = "Termin wizyty nieustalony";
         }
         statusInfo.add(nextVisit);
         System.out.println(statusInfo.get(0));

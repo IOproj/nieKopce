@@ -66,6 +66,7 @@ function addVisit(certificationID) {
                 function () {
                     var date = $("#inputVisitsDate").val();
                     var comment = $("#inputComment").val();
+                    var finish = $("#inputIsFinished").val();
                     $.ajax({
                         url: '/admin/ajax/addVisit',
                         method: 'GET',
@@ -73,7 +74,8 @@ function addVisit(certificationID) {
                         data: {
                             'certificationID': certificationID,
                             'date': date,
-                            'comment': comment
+                            'comment': comment,
+                            'finish': finish
                         },
                         error: function () {
                             console.log('błąd');
