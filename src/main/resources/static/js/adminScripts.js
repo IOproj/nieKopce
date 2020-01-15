@@ -22,7 +22,6 @@ function viewHistory(certificationID) {
 }
 
 function handleCertification(certificationID) {
-
     $("#planVisitPopUp").dialog({
         title: "Podaj datę kolejnej wizyty",
         width: 645,

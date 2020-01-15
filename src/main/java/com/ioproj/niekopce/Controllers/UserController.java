@@ -20,10 +20,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/user")
 @AllArgsConstructor
-public class UserController {
+public class UserController {           //TODO: ten Controller ma za dużo w sobie, trzeba by przerobić, rozdzielić
 
     private UserService userService;
     private CertificationService certificationService;
+
+    private
 
     @GetMapping("/addUser")
     String addUserPage(Model model) {
@@ -32,12 +34,12 @@ public class UserController {
     }
 
     @GetMapping("/standard")
-    String getUserPage(Model model,Principal principal) {
+    String getUserPage(Model model, Principal principal) {
         String name;
-        UserAccount user=null;
+        UserAccount user = null;
         try {
             name = principal.getName();
-             user= userService.get(name);
+            user = userService.get(name);
         } catch (NullPointerException e) {
             name = "niezalogowany";
         }
@@ -53,6 +55,13 @@ public class UserController {
         return "main/userPage";
     }
 
+    @GetMapping("/sendApplication2")
+    String sendNewCertificationRequest2(Principal principal, @RequestParam("producer") String producer, @RequestParam("date") String date,
+                                        @RequestParam("warranty") String warranty, @RequestParam("fuel") String fuel, @RequestParam("otherComments") String otherComments) {
+        String name = principal.getName();
+        userService.addCertification(name);
+        return "main/userPage";
+    }
 
 
     @PostMapping("/addUser")

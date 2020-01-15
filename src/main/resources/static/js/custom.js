@@ -1,7 +1,3 @@
-function loginBtnFunction(){
-    console.log("AAAAA")
-}
-
 function registerBtnFunction(){
     console.log("AAAAA")
 }

@@ -27,7 +27,7 @@ public class AdminAjaxController {
 
     @RequestMapping(value = "/getVisits", method = RequestMethod.GET)
     public @ResponseBody
-    List<VisitDTO> getAjaxVisit(@RequestParam("certificationID")String  certificationID) {
+    List<VisitDTO> getAjaxVisit(@RequestParam("certificationID")String certificationID) {
         System.out.println(certificationID);
         return visitService.getAllCertificationsVisit(Long.valueOf(certificationID));
     }

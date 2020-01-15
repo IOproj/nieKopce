@@ -1,9 +1,7 @@
-
 function calculaateActivity() {
     f = setInterval(function () {
         now = new Date();
         var nowTime = now.getTime();
-
         var distance = countDownDate - nowTime;
 
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -12,7 +10,6 @@ function calculaateActivity() {
         document.getElementById("demo").innerHTML = "Czas do wylogowania:"
             + minutes + "m " + seconds + "s ";
 
-        // If the count down is over, write some text
         if (distance < 0) {
             clearInterval(f);
             $("#logoutPopUp").dialog({
@@ -51,17 +48,44 @@ function sendApplication(){
     })
 }
 
-function getApplications(){ // NIEUŻYWANE OBECNIE
-    $.ajax({
-        url: 'getApplications',
-        type:'GET',
-        error: function () {
-            console.log("ZLE")
+
+function applicationButtonFunction() {
+    $("#describeHeatingDevicePopUp").dialog({
+        title: "Podaj parametry twojego urządzenia grzewczego",
+        width: 645,
+        height: 300,
+        modal: true,
+        buttons: {
+            Zatwierdz:
+                function () {
+                    var producer = $("#producer").val();
+                    var yearOfProduction = $("#yearOfProduction").val();
+                    var warrantyTerminationDate = $("#warrantyTerminationDate").val();
+                    var fuel = $("#fuel").val();
+                    var otherComments = $("#otherComments").val();
+                    $.ajax({
+                        url: 'sendApplication2',
+                        method: 'GET',
+                        dataType: 'json',
+                        data: {
+                            'producer': producer,
+                            'date': yearOfProduction,
+                            'warranty': warrantyTerminationDate,
+                            'fuel':fuel,
+                            'otherComments':otherComments
+                        },
+                        error: function () {
+                            console.log('błąd');
+                        }
+                        ,
+                        success: function () {
+                            console.log('OK');
+                        }
+                    });
+                    $(this).dialog('close');
+                }
         }
     })
 }
-
-
-
 
 //TODO Rozdzielić to na więcej plików JS
