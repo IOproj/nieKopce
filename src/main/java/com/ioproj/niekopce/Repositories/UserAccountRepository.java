@@ -22,4 +22,7 @@ public interface UserAccountRepository extends JpaRepository<UserAccount,Long> {
     @Transactional
     @Query("UPDATE UserAccount ua SET ua.certification = :certification WHERE ua.username = :username")
     void updateCertification(@Param("certification")Certification certification,@Param("username") String username);
+
+    @Query("SELECT ua.dbId FROM UserAccount ua WHERE ua.username = :username")
+    Long getDbIdByUsername(@Param("username")String username);
 }

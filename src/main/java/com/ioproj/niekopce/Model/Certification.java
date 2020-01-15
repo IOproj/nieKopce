@@ -27,7 +27,7 @@ public class Certification {
     private List<Visit> visits;
 
     @OneToOne(mappedBy = "certification")
-    @JoinColumn(name = "db_id",unique = true)
+    //@JoinColumn(name = "db_id",unique = true)
     private UserAccount userAccount;
 
 

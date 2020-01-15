@@ -56,6 +56,7 @@ function handleCertification(certificationID) {
 
 function addVisit(certificationID) {
     $("#inputCertificationID").val(certificationID);
+    var finish ="false";
     $("#addVisitPopuUp").dialog({
         title: "Złóż raport z wizyty",
         width: 645,
@@ -66,6 +67,10 @@ function addVisit(certificationID) {
                 function () {
                     var date = $("#inputVisitsDate").val();
                     var comment = $("#inputComment").val();
+                    var ischecked = $("#inputIsFinished").is(":checked");
+                    if(ischecked){
+                        finish = $("#inputIsFinished").val();
+                    }
                     $.ajax({
                         url: '/admin/ajax/addVisit',
                         method: 'GET',
@@ -73,7 +78,8 @@ function addVisit(certificationID) {
                         data: {
                             'certificationID': certificationID,
                             'date': date,
-                            'comment': comment
+                            'comment': comment,
+                            'finish': finish
                         },
                         error: function () {
                             console.log('błąd');

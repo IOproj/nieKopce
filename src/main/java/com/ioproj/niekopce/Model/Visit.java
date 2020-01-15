@@ -17,11 +17,11 @@ import javax.persistence.*;
 public class Visit {
 
     @Id
-   // @GeneratedValue wyłączone na potrzeby testów
+    @GeneratedValue(strategy = GenerationType.AUTO)// wyłączone na potrzeby testów
     private Long visitId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "certification_id")
+    //@JoinColumn(name = "certification_id")
     private Certification certification;
     private String date;
     private String comment;

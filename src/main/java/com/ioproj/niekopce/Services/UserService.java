@@ -47,4 +47,8 @@ private final CertificationRepository certificationRepository;
         toFind.setCertification(certification);
         userAccountRepository.updateCertification(certification,toFind.getUsername());
     }
+
+    public Long getIdByName(String name) {
+        return userAccountRepository.getDbIdByUsername(name);
+    }
 }

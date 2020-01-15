@@ -1,20 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Niekopce </title>
+    <meta charset="utf-8">
+    <title>Niekopce</title>
 
+    <!-- Load from serwer - longer but always aptodate -->
+    <meta http-equiv="cache-control" content="no-cache" />
+
+    <!--Boostrap Core files-->
+    <link type="text/css" rel = "stylesheet" href="/css/bootstrap.min.css"/>
+
+    <!--Other Scripts files-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/custom.css" /> <!-- TODO: Analogicznie -->
-        <script type="text/javascript" src="/js/custom.js"></script>
+    <script type="text/javascript" src="/js/custom.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
-    <script type="text/javascript" src="https://code.jquery.com/ui/1.10.3/jquery-ui.css"></script>
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
+    <!-- Material Design Bootstrap -->
+<!--    <link href="/css/mdb.min.css" rel="stylesheet">-->
+
+    <!--Custom Designs-->
+    <link rel="stylesheet" type="text/css" href="/css/custom.css"/>
     <script type="text/javascript">
         var currentTime;
         var pastTime;
@@ -41,21 +54,72 @@
             })
         })
     </script>
-
+    
 </head>
-<body onload="startTime()">
-Zalogowany jako
+<body>
+<nav class="navbar navbar-default navbar-custom" role="navigation">
+    <a class="navbar-brand navbar-brand-custom" href="/main/mainPage">NieKopce.pl</a>
+
+    <div class="navbar-container">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <!-- TODO: Dodac przekierowanie HTML. -->
+                <a class="nav-link nav-active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <!-- TODO: Dodac przekierowanie HTML. -->
+                <a class="nav-link" href="#">Misja</a>
+            </li>
+            <li class="nav-item">
+                <!-- TODO: Dodac przekierowanie servlet. -->
+                <a class="nav-link" href="#">Baza wiedzy</a>
+            </li>
+            <li class="nav-item nav-buttons">
+                <div class="nav-dropdown">
+                    <button class="btn btn-primary btn-register" type="button" onclick="location.href='/user/addUser'">Rejestracja</button>
+                    <button id = "loginButton" class="btn btn-outline-primary btn-login" type="button" onclick="dropdownLoginOpen()">Logowanie</button>
+                    <div id="loginDropdown" class="dropdown-content">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Nazwa użytkownika</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Użytkownik">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Hasło</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Hasło">
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Zapamiętaj mnie</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Zaloguj</button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!--Informacja o tym jaki user jest zalogowany pobranie danych z servera. -->
+<!--Zalogowany jako-->
 <tr th:text="${username}" />
-<h1 class="h1">Witaj na stronie głównej Niekopce</h1>
+<!--<h1 class="h1">Witaj na stronie głównej Niekopce</h1>-->
 
-<div class="parent">
-    <input type="button" id="gituwaButton" class="button" value="Gituwa button" onclick="registerBtnFunction()">
-    <a href="/user/addUser" class="button">Zarejestruj się</a>
-    <a href="/login" class="button">Zaloguj się</a> <!-- TODO: 1.ZAPYTANIE AJAXOWE PRZERZUCAJĄCE DO LOGOWANIA -->
-</div>
-<div id="txt"></div>
+<!--Guziki funkcyjne - Loguj, Rejestruj, Profil-->
+<!--<div class="parent">
+    <input class="button" id="gituwaButton" onclick="registerBtnFunction()" type="button" value="Gituwa button">
+    <a class="button" href="/user/addUser">Zarejestruj się</a><a class="button" href="/login">Zaloguj się</a>
+    &lt;!&ndash; TODO: 1.ZAPYTANIE AJAXOWE PRZERZUCAJĄCE DO LOGOWANIA &ndash;&gt;
+</div>-->
 
+<!--Skrypty Boostrapa na dole strony-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src = "/js/bootstrap.min.js"></script>
 
-
-</body >
+<!-- MDB core JavaScript -->
+<!--<script type="text/javascript" src="/js/mdb.min.js"></script>-->
+</body>
 </html>

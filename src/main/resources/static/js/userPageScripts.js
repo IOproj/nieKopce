@@ -29,7 +29,6 @@ function calculaateActivity() {
     }, 1000);
 }
 
-
 function reactOnMouseClick() {
     $(document).mousedown(function () {
         now = new Date();
@@ -38,7 +37,6 @@ function reactOnMouseClick() {
         console.log(countDownDate.getMinutes())
     })  ;
 }
-
 
 function sendApplication(){
     $.ajax({

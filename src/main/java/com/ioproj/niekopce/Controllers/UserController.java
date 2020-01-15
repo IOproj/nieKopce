@@ -3,6 +3,8 @@ package com.ioproj.niekopce.Controllers;
 
 import com.ioproj.niekopce.Model.Certification;
 import com.ioproj.niekopce.Model.DTO.AddUserDTO;
+import com.ioproj.niekopce.Model.UserAccount;
+import com.ioproj.niekopce.Services.CertificationService;
 import com.ioproj.niekopce.Services.ServicemanService;
 import com.ioproj.niekopce.Services.UserService;
 import lombok.AllArgsConstructor;
@@ -21,16 +23,26 @@ import java.util.List;
 public class UserController {
 
     private UserService userService;
+    private CertificationService certificationService;
 
     @GetMapping("/addUser")
-    String addMedPage(Model model) {
+    String addUserPage(Model model) {
         model.addAttribute("addUserDTO", new AddUserDTO());
         return "user/register";
     }
 
     @GetMapping("/standard")
-    String getUserPage(Model model) {
-        model.addAttribute("addUserDTO", new AddUserDTO());
+    String getUserPage(Model model,Principal principal) {
+        String name;
+        UserAccount user=null;
+        try {
+            name = principal.getName();
+             user= userService.get(name);
+        } catch (NullPointerException e) {
+            name = "niezalogowany";
+        }
+        List<String> status = certificationService.checkUsersCertification(user);
+        model.addAttribute("certificationStatus", status);
         return "main/userPage";
     }
 
@@ -41,8 +53,10 @@ public class UserController {
         return "main/userPage";
     }
 
+
+
     @PostMapping("/addUser")
-    String addMed(@ModelAttribute @Valid AddUserDTO addUserDTO, Errors errors, Model model) {
+    String addUser(@ModelAttribute @Valid AddUserDTO addUserDTO, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add User");
             return "user/register";

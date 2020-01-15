@@ -1,6 +1,7 @@
 package com.ioproj.niekopce.Repositories;
 
 import com.ioproj.niekopce.Model.Certification;
+import com.ioproj.niekopce.Model.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,4 +17,7 @@ public interface CertificationRepository extends JpaRepository<Certification,Lon
 
     @Query("SELECT c FROM Certification c where c.nextVisitDate IS NULL")
     List<Certification> finAllNotHandled();
+
+    @Query(value = "SELECT c.isFinished,c.nextVisitDate FROM Certification c where c.userAccount =:userAccount")
+   String getCertificationStatus(@Param("userAccount") UserAccount userID);
 }
