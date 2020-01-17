@@ -1,11 +1,9 @@
 package com.ioproj.niekopce.Controllers;
 
-
-import com.ioproj.niekopce.Model.Certification;
 import com.ioproj.niekopce.Model.DTO.AddUserDTO;
 import com.ioproj.niekopce.Model.UserAccount;
 import com.ioproj.niekopce.Services.CertificationService;
-import com.ioproj.niekopce.Services.ServicemanService;
+import com.ioproj.niekopce.Services.HeatingDeviceService;
 import com.ioproj.niekopce.Services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -24,6 +22,7 @@ public class UserController {           //TODO: ten Controller ma za dużo w sob
 
     private UserService userService;
     private CertificationService certificationService;
+    private HeatingDeviceService heatingDeviceService;
 
     private
 
@@ -59,6 +58,7 @@ public class UserController {           //TODO: ten Controller ma za dużo w sob
     String sendNewCertificationRequest2(Principal principal, @RequestParam("producer") String producer, @RequestParam("date") String date,
                                         @RequestParam("warranty") String warranty, @RequestParam("fuel") String fuel, @RequestParam("otherComments") String otherComments) {
         String name = principal.getName();
+        heatingDeviceService.addHeatingDevice(name,producer,date,warranty,fuel,otherComments);      //TODO: To było by fajnie zrefaktorować
         userService.addCertification(name);
         return "main/userPage";
     }

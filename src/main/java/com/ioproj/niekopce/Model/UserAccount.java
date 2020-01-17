@@ -26,6 +26,9 @@ public class UserAccount {
     @OneToOne
     private Certification certification;
 
+    @OneToOne
+    private HeatingDevice device;
+
     @Override
     public int hashCode() {
         return  7*13*dbId.hashCode();

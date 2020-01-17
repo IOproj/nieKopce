@@ -25,7 +25,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
             "/main/*",
             "/user/register",
             "/user/addUser",
-            "/favicon"
+            "/favicon",
+            "/register"
     };
 
     private static final String MAINPAGE = "/main/mainPage";

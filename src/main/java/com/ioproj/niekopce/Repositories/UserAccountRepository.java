@@ -2,6 +2,7 @@ package com.ioproj.niekopce.Repositories;
 
 
 import com.ioproj.niekopce.Model.Certification;
+import com.ioproj.niekopce.Model.HeatingDevice;
 import com.ioproj.niekopce.Model.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -25,4 +26,9 @@ public interface UserAccountRepository extends JpaRepository<UserAccount,Long> {
 
     @Query("SELECT ua.dbId FROM UserAccount ua WHERE ua.username = :username")
     Long getDbIdByUsername(@Param("username")String username);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE UserAccount ua SET ua.device = :heatingDevice WHERE ua.username = :username")
+    void updateHeatingDevice(HeatingDevice heatingDevice, String username);
 }

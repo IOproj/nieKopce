@@ -3,6 +3,7 @@ package com.ioproj.niekopce.Services;
 
 import com.ioproj.niekopce.Model.Certification;
 import com.ioproj.niekopce.Model.DTO.AddUserDTO;
+import com.ioproj.niekopce.Model.HeatingDevice;
 import com.ioproj.niekopce.Model.UserAccount;
 import com.ioproj.niekopce.Repositories.CertificationRepository;
 import com.ioproj.niekopce.Repositories.UserAccountRepository;
@@ -18,7 +19,7 @@ public class UserService {
 
     private  final UserAccountRepository userAccountRepository;
     private final PasswordEncoder passwordEncoder;
-private final CertificationRepository certificationRepository;
+    private final CertificationRepository certificationRepository;
 
     public void  addUser(AddUserDTO dto){
         UserAccount userAccount = new UserAccount(dto);
@@ -50,5 +51,9 @@ private final CertificationRepository certificationRepository;
 
     public Long getIdByName(String name) {
         return userAccountRepository.getDbIdByUsername(name);
+    }
+
+     void updateHeatingDevice(HeatingDevice heatingDevice, String username) {
+        userAccountRepository.updateHeatingDevice(heatingDevice,username);
     }
 }

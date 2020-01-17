@@ -42,7 +42,7 @@ public class CertificationRepoTests {
     @Before
     public void createUserAccount() {
         UserAccount userAccount = new UserAccount(99L, UUID.randomUUID(), "testUser", "testPassword",
-                                                        "email@test.com", false, null);
+                                                        "email@test.com", false, null,null);
         userAccountRepository.save(userAccount);
     }
 
