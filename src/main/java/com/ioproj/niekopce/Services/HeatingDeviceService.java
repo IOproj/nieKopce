@@ -1,10 +1,14 @@
 package com.ioproj.niekopce.Services;
 
+import com.ioproj.niekopce.Model.DTO.HeatingDeviceDTO;
 import com.ioproj.niekopce.Model.HeatingDevice;
 import com.ioproj.niekopce.Model.UserAccount;
 import com.ioproj.niekopce.Repositories.HeatingDeviceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -24,5 +28,14 @@ public class HeatingDeviceService {
         heatingDeviceRepository.save(heatingDevice);
         toFind.setDevice(heatingDevice);
         userService.updateHeatingDevice(heatingDevice,toFind.getUsername());
+    }
+
+    public List<HeatingDeviceDTO> getUserHeatingDevice(UserAccount owner) {
+        List<HeatingDevice> resultList =  heatingDeviceRepository.getUserHeatingDevice(owner);
+        List<HeatingDeviceDTO> outputList = new LinkedList<>();
+        for(HeatingDevice device :resultList){
+            outputList.add(device.dto());
+        }
+        return outputList;
     }
 }

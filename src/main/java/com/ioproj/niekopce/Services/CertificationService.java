@@ -20,7 +20,11 @@ public class CertificationService {
         List<Certification> dbCertifications = certificationRepository.findAll();
         List<CertificationDTO> resultList = new ArrayList<CertificationDTO>();
         for (Certification certification : dbCertifications) {
-            resultList.add(certification.dto());
+            CertificationDTO dto = certification.dto();
+            if(dto.getNextVisitDate()==null){
+                dto.setNextVisitDate("Brak terminu następnej wizyty");
+            }
+            resultList.add(dto);
         }
         return resultList;
     }

@@ -10,14 +10,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CertificationRepository extends JpaRepository<Certification,Long> {
+public interface CertificationRepository extends JpaRepository<Certification, Long> {
 
     @Query("SELECT c FROM Certification c where c.id = :id")
-     Certification findCertificationById(@Param("id") Long id);
+    Certification findCertificationById(@Param("id") Long id);
 
     @Query("SELECT c FROM Certification c where c.nextVisitDate IS NULL")
     List<Certification> finAllNotHandled();
 
     @Query(value = "SELECT c.isFinished,c.nextVisitDate FROM Certification c where c.userAccount =:userAccount")
-   String getCertificationStatus(@Param("userAccount") UserAccount userID);
+    String getCertificationStatus(@Param("userAccount") UserAccount userID);
 }

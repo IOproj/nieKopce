@@ -62,11 +62,18 @@
                     $.each(data, function (i, parameters) {
                         var nextVisitDate = parameters.nextVisitDate;
                         var isFinished = parameters.isFinished;
+                        if(!isFinished){
+                            isFinished="Nie zakończono"
+                        }
+                        else {
+                            isFinished="Zakończono"
+                        }
                         var certificationID = parameters.certificationID;
                         table = "<tr>" +
                             "<td class=\"CustomTH\">" + certificationID + "</td>" +
                             "<td class=\"CustomTH\">" + nextVisitDate + "</td>" +
                             "<td class=\"CustomTH\">" + isFinished + "</td>" +
+                            "<td><button id='viewVisitsHistory' class='smallButton' onclick='showDetails(" + certificationID + ")'>Szczegóły</button>" +
                             "<td><button id='handleVisitButton' class='smallButton' onclick='handleCertification(" + certificationID + ")'>Obsłuż</button></td>" +
                             "<td><button id='viewVisitsHistory' class='smallButton' onclick='viewHistory(" + certificationID + ")'>Historia</button>" +
                             "<td><button id='addVisitRaport' class='smallButton' onclick='addVisit(" + certificationID + ")'>Dodaj wizytę</button>" +
@@ -117,6 +124,16 @@
     </thead>
 </table>
 
+<table id="heat">
+    <thead>
+    <tr>
+        <th>date</th>
+        <th>comment</th>
+    </tr>
+    </thead>
+</table>
+
+
 
 <div id="logoutPopUp" style="display: none">
     Zostałeś wylogowany ze względu na brak aktywności
@@ -154,6 +171,42 @@
         <td><input id="inputIsFinished" type="checkbox" value="true"/>       </td>
     </tr>
 </div>
+
+
+
+<div id="showHatingDevicePopUp" style="display: none">
+    <tr>
+        <label for="producer" class="PopUpLabel">Producent</label>
+        <td><input id="producer" type="text" class="PopUpInput"/></td>
+    </tr>
+    <br><br>
+    <tr>
+        <label for="yearOfProduction" class="PopUpLabel">Rok produkcji</label>
+        <td><input id="yearOfProduction" type="text"  class="PopUpInput"/></td>
+    </tr>
+    <br><br>
+    <tr>
+        <label for="warrantyTerminationDate" class="PopUpLabel">Termin upływu gwarancji</label>
+        <td><input id="warrantyTerminationDate" type="text" class="PopUpInput"/></td>
+    </tr>
+    <br><br>
+    <tr>
+        <label for="fuel" class="PopUpLabel">Rodzaj paliwa</label>
+        <td><input id="fuel" type="text" class="PopUpInput"/></td>
+    </tr>
+    <br><br>
+    <tr>
+        <label for="otherComments" class="PopUpLabel">Inne uwagi (opcjonalne)</label>
+        <td><input id="otherComments" type="text" class="PopUpInput"/></td>
+    </tr>
+</div>
+
+
+
+
+
+
+
 
 </body>
 </html>

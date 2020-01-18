@@ -21,6 +21,40 @@ function viewHistory(certificationID) {
     })
 }
 
+var deviceId;
+var producer;
+var yearOfProduction;
+var warrantyTerminationDate;
+var fuel;
+var otherComments;
+
+function showDetails(certificationID) {
+    $.ajax({
+        url: '/admin/ajax/getDetails',
+        type: 'GET',
+        dataType: 'json',
+        data: {
+            'certificationID': certificationID,
+            'deviceId': deviceId,
+            'producer': producer,
+            'yearOfProduction': yearOfProduction,
+            'warrantyTerminationDate': warrantyTerminationDate,
+            'fuel':fuel,
+            'otherComments':otherComments
+        }
+    }).done(function (data) {
+        var visitAjaxtable = {};
+        $('#heat').empty();
+        $.each(data, function (i, parameters) {
+            var date = parameters.producer;
+            var comment = parameters.fuel;
+            visitAjaxtable = "<tr><td>" + certificationID + "</td><td>" + date + "</td><td>" + comment + "</td>" +
+                "<td></tr>"
+            $('#heat').append(visitAjaxtable);
+        })
+    })
+}
+
 function handleCertification(certificationID) {
     $("#planVisitPopUp").dialog({
         title: "Podaj datę kolejnej wizyty",

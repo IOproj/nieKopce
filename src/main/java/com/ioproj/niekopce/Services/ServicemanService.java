@@ -24,9 +24,9 @@ public class ServicemanService {
         return certificationRepository.finAllNotHandled();
     }
 
-    public void setNextVisitDate(Long id){
+    public void setNextVisitDate(Long id,String nextVisit){
         Certification certification = certificationRepository.findCertificationById(id);
-        certification.setNextVisitDate("chengedDate");
+        certification.setNextVisitDate(nextVisit);
         certificationRepository.save(certification);
     }
 }

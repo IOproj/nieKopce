@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.List;
@@ -34,5 +35,11 @@ public class AdminController {
             System.out.println(certification.getNextVisitDate());
         }
        return  "admin/adminPage";
+    }
+
+    @GetMapping("/planVisit")
+    String addIncomingVisit(@RequestParam("certificationID") String certificationID,@RequestParam("inputDate") String visitDate){
+        servicemanService.setNextVisitDate(Long.valueOf(certificationID),visitDate);
+        return "admin/adminPage";
     }
 }
