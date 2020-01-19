@@ -47,9 +47,12 @@ function showDetails(certificationID) {
         $('#heat').empty();
         $.each(data, function (i, parameters) {
             var date = parameters.producer;
-            var comment = parameters.fuel;
-            visitAjaxtable = "<tr><td>" + certificationID + "</td><td>" + date + "</td><td>" + comment + "</td>" +
-                "<td></tr>"
+            var yearOfProduction = parameters.yearOfProduction;
+            var warrantyTerminationDate = parameters.warrantyTerminationDate;
+            var fuel = parameters.fuel;
+            var otherComments = parameters.otherComments;
+            visitAjaxtable = "<tr><td>" + certificationID + "</td><td>" + date + "</td><td>" + yearOfProduction + "</td>" +
+                "<td>" + warrantyTerminationDate + "</td><td>" + fuel + "</td><td>" + otherComments + "</td><td></tr>";
             $('#heat').append(visitAjaxtable);
         })
     })
