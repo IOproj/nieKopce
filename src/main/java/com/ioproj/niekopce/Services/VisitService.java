@@ -28,11 +28,15 @@ public class VisitService {
         return resultList;
     }
 
-    public void addVisit(Certification certificationById, String comment, String date) {
+    public void addVisit(Certification certificationById, String comment, String date,String finish) {
         Visit visit = new Visit();
         visit.setCertification(certificationById);
         visit.setComment(comment);
         visit.setDate(date);
         visitRepository.save(visit);
+        if(finish.equals("true")){
+            certificationById.setIsFinished(true);
+            certificationRepository.setAsFinished(certificationById.getId());
+        }
     }
 }

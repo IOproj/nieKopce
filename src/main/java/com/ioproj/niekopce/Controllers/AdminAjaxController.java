@@ -48,7 +48,7 @@ public class AdminAjaxController {
     public @ResponseBody
     Boolean addVusut(@RequestParam("certificationID") String certificationID, @RequestParam("comment") String comment,
                      @RequestParam("date") String date, @RequestParam("finish") String finish) {
-        visitService.addVisit(certificationService.getCertificationById(Long.valueOf(certificationID)), comment, date);
+        visitService.addVisit(certificationService.getCertificationById(Long.valueOf(certificationID)), comment, date,finish);
         return true;
     }
 }

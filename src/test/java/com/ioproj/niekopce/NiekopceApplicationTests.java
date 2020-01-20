@@ -47,4 +47,7 @@ public class NiekopceApplicationTests {
        UserAccount found = userAccountRepository.findByUsername(newAcc.getUsername()).orElse(empty);
         Assert.assertEquals(newAcc.getUsername(),found.getUsername());
     }
+
+
+
 }

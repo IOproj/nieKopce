@@ -36,18 +36,25 @@ public class CertificationService {
     public List<String> checkUsersCertification(UserAccount user) {
         String queryResult = certificationRepository.getCertificationStatus(user);
         List<String> statusInfo = new ArrayList<>(2);
-        String status = queryResult.substring(0, queryResult.indexOf(','));
-        String nextVisit = queryResult.substring(queryResult.indexOf(',') + 1, queryResult.length());
-        if (status.equals("false")) {
-            status = "niezakończona";
-        } else if (status.equals("true")) {
-            status = "zakończona";
-            nextVisit = "";
+        String status,nextVisit;
+        if(queryResult == null){
+            status = "niekompletne dane";
+            nextVisit = "niekompletne dane";
+        }
+        else {
+            status = queryResult.substring(0, queryResult.indexOf(','));
+            nextVisit = queryResult.substring(queryResult.indexOf(',') + 1, queryResult.length());
+            if (status.equals("false")) {
+                status = "niezakończona";
+            } else if (status.equals("true")) {
+                status = "zakończona";
+                nextVisit = "";
+            }
+            if (nextVisit.equals("null") && status.equals("niezakończona")) {
+                nextVisit = "Termin wizyty nieustalony";
+            }
         }
         statusInfo.add(status);
-        if (nextVisit.equals("null") && status.equals("niezakończona")) {
-            nextVisit = "Termin wizyty nieustalony";
-        }
         statusInfo.add(nextVisit);
         System.out.println(statusInfo.get(0));
         return statusInfo;
