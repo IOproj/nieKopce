@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:text-align="http://www.w3.org/1999/xhtml"
-      xmlns:left="http://www.w3.org/1999/xhtml">
+      xmlns:left="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Niekopce </title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.10.3/jquery-ui.css"></script>
 
     <!-- Bootstrap core CSS -->
@@ -18,41 +18,33 @@
 
     <!-- Material Design Bootstrap -->
     <link href="/static/css/mdb.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
     <!-- Customs css style sheets -->
-    <link rel="stylesheet" type="text/css" href="/css/custom.css" /> <!-- TODO: Analogicznie -->
+    <link rel="stylesheet" type="text/css" href="/css/custom.css"/> <!-- TODO: Analogicznie -->
     <script type="text/javascript" src="/js/userPageScripts.js"></script>
 
-<script th:src="@{/js/jquery-1.6.2.js}" type="text/javascript"></script>
-
-
-    <script>
-        var now=new Date();
-        var countDownDate = new Date();
-        countDownDate.setMinutes(countDownDate.getMinutes()+5);
-        reactOnMouseClick();
-    </script>
+    <script th:src="@{/js/jquery-1.6.2.js}" type="text/javascript"></script>
 </head>
 
-<body onload="calculaateActivity()">    <!-- TODO: Dorobić oncloe -->
+<body onload="calculaateActivity()">    <!-- TODO: Dorobić onclose -->
 
 <p id="demo"></p>
 
 <h1>Default customer page</h1>
 <div class="parent">
-    <input type="button" id="applicationButton" class="button" value="Zamów wizytę" onclick="applicationButtonFunction()">
+    <input type="button" id="applicationButton" class="button" value="Zamów wizytę" onclick="openModal()">
     <a href="/main/returnMain" class="button">Powrót na stronę główną</a>
 </div>
 
 <br><br>
 <div class="parent">
-<td     >Status twojej certyfikacji: </td>
-<tr th:each="status : ${certificationStatus}">
-    <td th:text="${status}"></td>
-</tr>
+    <td>Status twojej certyfikacji:</td>
+    <tr th:each="status : ${certificationStatus}">
+        <td th:text="${status}"></td>
+    </tr>
 </div>
 
 <div id="logoutPopUp" style="display: none">
@@ -62,35 +54,60 @@
     </form>
 </div>
 
-<div id="describeHeatingDevicePopUp" style="display: none">
-    <tr>
-        <label for="producer" class="PopUpLabel">Producent</label>
-        <td><input id="producer" type="text" class="PopUpInput"/></td>
-    </tr>
-    <br><br>
-    <tr>
-        <label for="yearOfProduction" class="PopUpLabel">Rok produkcji</label>
-        <td><input id="yearOfProduction" type="text"  class="PopUpInput"/></td>
-    </tr>
-    <br><br>
-    <tr>
-        <label for="warrantyTerminationDate" class="PopUpLabel">Termin upływu gwarancji</label>
-        <td><input id="warrantyTerminationDate" type="text" class="PopUpInput"/></td>
-    </tr>
-    <br><br>
-    <tr>
-        <label for="fuel" class="PopUpLabel">Rodzaj paliwa</label>
-        <td><input id="fuel" type="text" class="PopUpInput"/></td>
-    </tr>
-    <br><br>
-    <tr>
-        <label for="otherComments" class="PopUpLabel">Inne uwagi (opcjonalne)</label>
-        <td><input id="otherComments" type="text" class="PopUpInput"/></td>
-    </tr>
+<div id="describeHeatingDevicePopUp" class="MyMOmodaal" role="dialog">
+
+    <div class="modaAAl-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modDal-header">
+
+            <h4 class="customH4">OPISZ SWÓJ SPRZĘT</h4>
+        </div>
+        <div class="modal-boOdy">
+            <br>
+            <form>
+            <tr>
+                <label for="producer" class="PopUpLabel">Producent</label>
+                <td><input id="producer" type="text" class="PopUpInput"/></td>
+                <span style="display: none " id="producerError"><font color="red"> Uzupełnij to pole</font></span>
+            </tr>
+            <br><br>
+            <tr>
+                <label for="yearOfProduction" class="PopUpLabel">Rok produkcji<small>(YYYY-MM-DD)</small></label>
+                <td><input id="yearOfProduction" type="text" class="PopUpInput" /></td>
+                <span style="display: none " id="yearError"><font color="red"> Uzupełnij to pole</font></span>
+                <span style="display: none " id="yearNotMatches"><font color="red"> Niewłaściwy format (YYYY-MM-DD)</font></span>
+            </tr>
+            <br><br>
+            <tr>
+                <label for="warrantyTerminationDate" class="PopUpLabel">Termin upływu gwarancji<small>(YYYY-MM-DD)</small></label>
+                <td><input id="warrantyTerminationDate" type="text" class="PopUpInput" /></td>
+                <span style="display: none " id="warrantyError"><font color="red"> Uzupełnij to pole</font></span>
+            </tr>
+            <br><br>
+            <tr>
+                <label for="fuel" class="PopUpLabel">Rodzaj paliwa</label>
+                <td><input id="fuel" type="text" class="PopUpInput" /></td>
+                <span style="display: none " id="fuelError"><font color="red"> Uzupełnij to pole</font></span>
+
+            </tr>
+            <br><br>
+            <tr>
+                <label for="otherComments" class="PopUpLabel">Inne uwagi(opcjonalne)</label>
+                <td><input id="otherComments" type="text" class="PopUpInput" /></td>
+            </tr>
+            <br><br>
+            <tr>
+                <td>
+                    <button  type="button" id="sendApplicationButton" onclick=sendApplication()>Zatwierdź</button>
+                </td>
+            </tr>
+            </form>
+        </div>
+        <div class="modal-fOOter">
+
+        </div>
+    </div>
 </div>
-
-
-
 
 </body>
 </html>

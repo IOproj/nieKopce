@@ -165,6 +165,7 @@
 .PopUpInput {
     display: inline-block;
     float: left;
+    position: center;
 }
 
 .PopUpInput2 {
@@ -187,4 +188,81 @@
     position: absolute;
     left: 37%;
     margin-top: 50px;
+}
+
+/*   TABLE */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* MODAL */
+/* The Modal (background) */
+.MyMOmodaal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modaAAl-content {
+
+    background-color: #4CAF50;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 2px;
+    border: 1px solid;
+    width: 45%; /* Could be more or less, depending on screen size */
+}
+
+.modDal-header{
+    background-color:#4CAF50;
+    height: 100%; /* Full height */
+}
+
+.modal-boOdy{
+    background-color:#FFFFFF;
+    height: 100%; /* Full height */
+    position: center    ;
+}
+
+.modal-fOOter{
+    background-color:#FFFFFF;
+    height: 100%; /* Full height */
+}
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.customH4{
+    font-size: 25px;
 }

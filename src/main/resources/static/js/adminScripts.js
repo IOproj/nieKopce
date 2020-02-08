@@ -1,3 +1,15 @@
+
+
+
+var now = new Date();
+var countDownDate = new Date();
+countDownDate.setMinutes(countDownDate.getMinutes() + 5);
+reactOnMouseClick();
+
+
+
+
+
 function viewHistory(certificationID) {
     $.ajax({
         url: '/admin/ajax/getVisits',
@@ -11,6 +23,8 @@ function viewHistory(certificationID) {
     }).done(function (data) {
         var visitAjaxtable = {};
         $('#visitsTable').empty();
+        var tableinfo="<tr>"+ "<th>ID</th>"+"<th>Data wizyty</th>"+ " <th>Komentarz</th>"+" <th> </th>"+"</tr>";
+        $('#visitsTable').append(tableinfo);
         $.each(data, function (i, parameters) {
             var date = parameters.date;
             var comment = parameters.comment;
@@ -43,17 +57,19 @@ function showDetails(certificationID) {
             'otherComments':otherComments
         }
     }).done(function (data) {
-        var visitAjaxtable = {};
+        var detailsTable = {};
         $('#heat').empty();
+         var tableinfo="<tr>"+ "<th>ID</th>"+"<th>Producent</th>"+ " <th>Rok prod.</th>"+ " <th>Data gwarancji </th>"+ " <th>Paliwo </th>"+ " <th>Inne uwagi </th>"+ " <th> </th>"+ "</tr>"
+        $('#heat').append(tableinfo);
         $.each(data, function (i, parameters) {
             var date = parameters.producer;
             var yearOfProduction = parameters.yearOfProduction;
             var warrantyTerminationDate = parameters.warrantyTerminationDate;
             var fuel = parameters.fuel;
             var otherComments = parameters.otherComments;
-            visitAjaxtable = "<tr><td>" + certificationID + "</td><td>" + date + "</td><td>" + yearOfProduction + "</td>" +
+            detailsTable = "<tr><td>" + certificationID + "</td><td>" + date + "</td><td>" + yearOfProduction + "</td>" +
                 "<td>" + warrantyTerminationDate + "</td><td>" + fuel + "</td><td>" + otherComments + "</td><td></tr>";
-            $('#heat').append(visitAjaxtable);
+            $('#heat').append(detailsTable);
         })
     })
 }
@@ -130,3 +146,54 @@ function addVisit(certificationID) {
         }
     })
 }
+
+
+
+
+var nextVisitDate;
+var isFinished;
+var certificationID;
+var date;
+var comment;
+
+$(document).ready(function () {
+    $('#getApplicationButton').click(function () {
+        $.ajax({
+            url: '/admin/ajax/testlist',
+            type: 'GET',
+            dataType: "json",
+            data: {
+                'nextVisitDate': nextVisitDate,
+                'isFinished': isFinished,
+                'certificationID': certificationID
+            }
+        }).done(function (data) {
+            var table = {};
+            var tableinfo = {};
+            $('#certificationsTable').empty();
+            tableinfo="<tr>"+ "<th>ID</th>"+"<th>Następna wizyta</th>"+ " <th>Status</th>"+ " <th> </th>"+ " <th> </th>"+ " <th> </th>"+ " <th> </th>"+ "</tr>"
+            $('#certificationsTable').append(tableinfo);
+            $.each(data, function (i, parameters) {
+                var nextVisitDate = parameters.nextVisitDate;
+                var isFinished = parameters.isFinished;
+                if(!isFinished){
+                    isFinished="Nie zakończono"
+                }
+                else {
+                    isFinished="Zakończono"
+                }
+                var certificationID = parameters.certificationID;
+                table ="<tr>" +
+                    "<td class=\"CustomTH\">" + certificationID + "</td>" +
+                    "<td class=\"CustomTH\">" + nextVisitDate + "</td>" +
+                    "<td class=\"CustomTH\">" + isFinished + "</td>" +
+                    "<td><button id='viewVisitsHistory' class='smallButton' onclick='showDetails(" + certificationID + ")'>Szczegóły</button>" +
+                    "<td><button id='handleVisitButton' class='smallButton' onclick='handleCertification(" + certificationID + ")'>Obsłuż</button></td>" +
+                    "<td><button id='viewVisitsHistory' class='smallButton' onclick='viewHistory(" + certificationID + ")'>Historia</button>" +
+                    "<td><button id='addVisitRaport' class='smallButton' onclick='addVisit(" + certificationID + ")'>Dodaj wizytę</button>" +
+                    "</tr>";
+                $('#certificationsTable').append(table);
+            })
+        })
+    })
+});

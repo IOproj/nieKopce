@@ -56,7 +56,6 @@ public class CertificationService {
         }
         statusInfo.add(status);
         statusInfo.add(nextVisit);
-        System.out.println(statusInfo.get(0));
         return statusInfo;
     }
 }
