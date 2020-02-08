@@ -21,7 +21,7 @@ public class CertificationService {
         List<CertificationDTO> resultList = new ArrayList<CertificationDTO>();
         for (Certification certification : dbCertifications) {
             CertificationDTO dto = certification.dto();
-            if(dto.getNextVisitDate()==null){
+            if(dto.getNextVisitDate()==null || dto.getNextVisitDate().equals("")){
                 dto.setNextVisitDate("Brak terminu następnej wizyty");
             }
             resultList.add(dto);

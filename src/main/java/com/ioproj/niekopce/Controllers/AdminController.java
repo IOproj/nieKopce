@@ -26,17 +26,6 @@ public class AdminController {
         return "admin/adminPage";
     }
 
-    @GetMapping("/getApplications")
-   String getApplications(Principal principal) {
-        String name = principal.getName();
-        System.out.println(name);
-        List<Certification> certifications = servicemanService.getAllCertifications();
-        for(Certification certification:certifications){
-            System.out.println(certification.getNextVisitDate());
-        }
-       return  "admin/adminPage";
-    }
-
     @GetMapping("/planVisit")
     String addIncomingVisit(@RequestParam("certificationID") String certificationID,@RequestParam("inputDate") String visitDate){
         servicemanService.setNextVisitDate(Long.valueOf(certificationID),visitDate);

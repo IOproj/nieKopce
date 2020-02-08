@@ -13,7 +13,6 @@ import java.util.List;
 @Repository
 public interface VisitRepository extends JpaRepository<Visit,Long> {
 
-
     @Query("SELECT v FROM Visit v where v.certification=:certification")
     List<Visit> getAllCertificationVisits(@Param("certification")Certification certification);
 

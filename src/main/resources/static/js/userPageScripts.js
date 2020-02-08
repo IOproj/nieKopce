@@ -134,16 +134,10 @@ function sendApplication(){
             'otherComments':otherComments
         },
         error: function () {
-            console.log('błąd');
-        }
-        ,
-        success: function () {
-            console.log('OK');
+           alert("Błąd podczas próby wysłania zgłoszenia")
         }
     });
     closeModal();
 }
-
-
 
 //TODO Rozdzielić to na więcej plików JS

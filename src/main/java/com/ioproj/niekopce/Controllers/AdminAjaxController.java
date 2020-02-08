@@ -43,10 +43,9 @@ public class AdminAjaxController {
        return heatingDeviceService.getUserHeatingDevice(owner);
     }
 
-
     @RequestMapping(value = "/addVisit", method = RequestMethod.GET)
     public @ResponseBody
-    Boolean addVusut(@RequestParam("certificationID") String certificationID, @RequestParam("comment") String comment,
+    Boolean addVisit(@RequestParam("certificationID") String certificationID, @RequestParam("comment") String comment,
                      @RequestParam("date") String date, @RequestParam("finish") String finish) {
         visitService.addVisit(certificationService.getCertificationById(Long.valueOf(certificationID)), comment, date,finish);
         return true;

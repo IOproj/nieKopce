@@ -18,13 +18,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/user")
 @AllArgsConstructor
-public class UserController {           //TODO: ten Controller ma za dużo w sobie, trzeba by przerobić, rozdzielić
+public class UserController {
 
     private UserService userService;
     private CertificationService certificationService;
     private HeatingDeviceService heatingDeviceService;
-
-    private
 
     @GetMapping("/addUser")
     String addUserPage(Model model) {
@@ -47,22 +45,14 @@ public class UserController {           //TODO: ten Controller ma za dużo w sob
         return "main/userPage";
     }
 
-    @GetMapping("/sendApplication")
-    String sendNewCertificationRequest(Principal principal) {
-        String name = principal.getName();
-        userService.addCertification(name);
-        return "main/userPage";
-    }
-
     @GetMapping("/sendApplication2")
     String sendNewCertificationRequest2(Principal principal, @RequestParam("producer") String producer, @RequestParam("date") String date,
                                         @RequestParam("warranty") String warranty, @RequestParam("fuel") String fuel, @RequestParam("otherComments") String otherComments) {
         String name = principal.getName();
-        heatingDeviceService.addHeatingDevice(name,producer,date,warranty,fuel,otherComments);      //TODO: To było by fajnie zrefaktorować
+        heatingDeviceService.addHeatingDevice(name,producer,date,warranty,fuel,otherComments);
         userService.addCertification(name);
         return "main/userPage";
     }
-
 
     @PostMapping("/addUser")
     String addUser(@ModelAttribute @Valid AddUserDTO addUserDTO, Errors errors, Model model) {

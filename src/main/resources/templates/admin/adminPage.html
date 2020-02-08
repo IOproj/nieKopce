@@ -82,24 +82,42 @@
     </form>
 </div>
 
-<div id="planVisitPopUp" style="display: none">
-    <tr>
-        <td>Data planowanej wizyty
-        <td><input id="inputDateField" type="text"/></td>
-        </td>
-    </tr>
+<div id="planVisitPopUp" style="display: none" class="MyMOmodaal">
+    <div class="modaAAl-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modDal-header">
+
+            <h4 class="customH4">PODAJ TERMIN NASTĘPNEJ WIZYTY</h4>
+        </div>
+        <div class="modal-boOdy">
+            <br><br>
+            <tr>
+                <td>Data planowanej wizyty
+                <td><input id="inputDateField" type="text"/></td>
+                </td>
+            </tr>
+            <br><br><br>
+            <tr>
+                <td>
+                    <button  type="button" id="planNextVisitButton" onclick=handleCertification()>Zatwierdź</button>
+                </td>
+            </tr>
+        </div>
+        <div class="modal-fOOter">
+        </div>
+    </div>
 </div>
 
 <div id="addVisitPopuUp" style="display: none">
     <tr>
         <label for="inputCertificationID" class="PopUpLabel">ID wizyty</label>
-        <td><input id="inputCertificationID" type="text"  class="PopUpInput" readonly/></td>
+        <td><input id="inputCertificationID" type="text" class="PopUpInput" readonly/></td>
     </tr>
     <br>
-     <tr>
-         <label for="inputVisitsDate" class="PopUpLabel">Data wizyty</label>
-         <td><input id="inputVisitsDate" type="text"  class="PopUpInput"/></td>
-     </tr>
+    <tr>
+        <label for="inputVisitsDate" class="PopUpLabel">Data wizyty</label>
+        <td><input id="inputVisitsDate" type="text" class="PopUpInput"/></td>
+    </tr>
     <br>
     <tr>
         <label for="inputComment" class="PopUpLabel">Komentarz</label>
@@ -108,34 +126,7 @@
     <tr>
         <label for="inputIsFinished" class="PopUpLabel">Zakończ proces certyfikacji</label>
         <br>
-        <td><input id="inputIsFinished" type="checkbox" value="true"/>       </td>
-    </tr>
-</div>
-
-<div id="showHatingDevicePopUp" style="display: none">
-    <tr>
-        <label for="producer" class="PopUpLabel">Producent</label>
-        <td><input id="producer" type="text" class="PopUpInput"/></td>
-    </tr>
-    <br><br>
-    <tr>
-        <label for="yearOfProduction" class="PopUpLabel">Rok produkcji</label>
-        <td><input id="yearOfProduction" type="text"  class="PopUpInput"/></td>
-    </tr>
-    <br><br>
-    <tr>
-        <label for="warrantyTerminationDate" class="PopUpLabel">Termin upływu gwarancji</label>
-        <td><input id="warrantyTerminationDate" type="text" class="PopUpInput"/></td>
-    </tr>
-    <br><br>
-    <tr>
-        <label for="fuel" class="PopUpLabel">Rodzaj paliwa</label>
-        <td><input id="fuel" type="text" class="PopUpInput"/></td>
-    </tr>
-    <br><br>
-    <tr>
-        <label for="otherComments" class="PopUpLabel">Inne uwagi (opcjonalne)</label>
-        <td><input id="otherComments" type="text" class="PopUpInput"/></td>
+        <td><input id="inputIsFinished" type="checkbox" value="true"/></td>
     </tr>
 </div>
 

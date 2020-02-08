@@ -11,7 +11,6 @@ import java.util.List;
 @Repository
 public interface HeatingDeviceRepository extends JpaRepository<HeatingDevice,Long> {
 
-
     @Query("SELECT hd FROM HeatingDevice hd where hd.userAccount =:owner")
     List<HeatingDevice> getUserHeatingDevice(UserAccount owner);
 }
